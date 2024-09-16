@@ -1,0 +1,3 @@
+[24-Jun-2024 22:02:01 UTC] PHP Fatal error:  Cannot redeclare App\Models\Freelancer::main_field() in /home/datadigix/easylist.datadigix.com/app/Models/Freelancer.php on line 41
+[05-Aug-2024 22:51:55 UTC] PHP Fatal error:  Cannot redeclare App\Models\NewFranchise::Transfers() in /home/datadigix/easylist.datadigix.com/app/Models/NewFranchise.php on line 55
+[05-Aug-2024 23:02:18 UTC] PHP Fatal error:  Cannot redeclare App\Models\NewFranchise::Transfers() in /home/datadigix/easylist.datadigix.com/app/Models/NewFranchise.php on line 55

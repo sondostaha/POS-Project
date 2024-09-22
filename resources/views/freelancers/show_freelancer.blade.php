@@ -173,23 +173,18 @@
                                         <td>:</td>
                                         <td><a href="{{ $freelancer->cv }}">{{ $freelancer->cv }}</a></td>
                                     </tr>
-                                        @if ($freelancer->ratings)
-                                        @foreach($freelancer->ratings as $rate)
+                                @if ($freelancer->ratings)
 
-                                            <tr>
-                                                <td>التقييم</td>
+                                    <tr>
 
-                                                <td>:</td>
-                                                <td>
+                                        <td> اجمالي التقييم</td>
 
-                                                    {{ $rate->rating }}
+                                        <td>:</td>
 
-                                                </td>
-                                                <td>تعليق علي التقيم : </td>
-                                                <td>{{$rate->comment}}</td>
-                                            </tr>
+{{--                                            {{ $rate->rating }}--}}
+                                        <td>: {{$total_value_of_rating}}</td>
+                                    </tr>
 
-                                        @endforeach
                                             @else
                                             <tr>
                                                 <td>التقييم</td>
@@ -243,6 +238,19 @@
                                             </div>
 
                                         </form>
+                                        @foreach($freelancer->ratings as $rate)
+                                            <tr>
+                                                <td> التقيم  </td>
+                                                <td> :</td>
+                                                <td>{{$rate->rating}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>تعليق علي التقيم  </td>
+                                                <td> :</td>
+                                                <td>{{$rate->comment}}</td>
+                                            </tr>
+
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

@@ -33,7 +33,8 @@ class ClientController extends Controller
         $title = "Clients";
         $description = "Clients";
         $currentUser = Auth::user();
-        $clients = Client::where('new_franchise_id' , $currentUser->new_franchise_id)->get();
+        $clients = Client::where('new_franchise_id' , $currentUser->new_franchise_id)->with('user')->get();
+
         return view('clients.all' , compact("title" , "description" , "clients"));
     }
 
@@ -51,7 +52,7 @@ class ClientController extends Controller
             "user_id" => 'required',
             "main_field_id" => 'required',
         ]);
-        
+
 
         $currentUser = Auth::user();
         if ($currentUser && $currentUser->new_franchise_id) {
@@ -102,7 +103,7 @@ class ClientController extends Controller
         ]);
 
         $client = Client::findOrFail($id);
-        
+
                 $currentUser = Auth::user();
             if ($currentUser && $currentUser->new_franchise_id) {
                 $data['new_franchise_id'] = $currentUser->new_franchise_id;
@@ -136,10 +137,10 @@ class ClientController extends Controller
 
 
     }
-    
-    
-    
-    
+
+
+
+
   public function create_transfer()
     {
         $clients = Client::all();
@@ -147,7 +148,7 @@ class ClientController extends Controller
         $description = "transfers";
         return view('transfer_data.create', compact('clients' , 'description','title'));
     }
-    
+
         public function transfer_index()
     {
         $clients = Client::with('transfers')->get();
@@ -174,7 +175,7 @@ public function store_transfer(Request $request)
         $file = $request->file('file');
         $fileName = time() . '_' . $file->getClientOriginalName();
         $destinationPath = public_path('uploads/transfers');
-        
+
         // Create directory if not exists
         if (!file_exists($destinationPath)) {
             mkdir($destinationPath, 0777, true);
@@ -214,9 +215,9 @@ public function download($language , $id)
 
 
 
-    
-    
 
-    
-    
+
+
+
+
 }

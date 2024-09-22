@@ -26,7 +26,7 @@
                     <h6>{{ trans('menu.add_new_franchise') }}</h6>
                 </div>
                 <div class="card-body py-md-30">
-                
+
                     @include('partials._errors')
                     <form action="{{route('store_new_franchise' , app()->getLocale())}}" method="POST">
                         @csrf
@@ -47,7 +47,7 @@
                             </div>
 
 
-                            <p>مسؤول الفرانشيز:</p>
+                            <p> المدير التنفيذي:</p>
 
                             <div class="col-md-6 mb-25">
                                 <input type="text" name="username" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="اسم المسؤول" value="{{old('username')}}">

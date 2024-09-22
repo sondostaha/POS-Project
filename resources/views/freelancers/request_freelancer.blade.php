@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-25">
                                 <div class="form-group select-px-15 text-end">
-                    
+
                                     <select class="form-control px-15 text-end" id="mainField" name="main_field_id" required>
                                         <option class="text-end" selected disabled>مجال العمل الرئيسي</option>
                                         @foreach($mainfields as $field)
@@ -41,14 +41,14 @@
                                             {{$field->title}}
                                             </option>
                                         @endforeach
-                                            
+
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-md-6 mb-25">
                                 <div class="form-group select-px-15 text-end">
-            
+
                                     <select class="form-control px-15 text-end" id="countryOption0909" name="sub_field_id" required>
                                             <option class="text-end" selected disabled>مجال العمل الفرعي</option>
                                         @foreach ($subfields as $field )
@@ -61,10 +61,22 @@
                                 </div>
                             </div>
 
+
                             <div class="col-md-6 mb-25">
                             <input type="text" name="desc" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="الوصف" value="{{old('desc')}}">
                             </div>
 
+                            <div class="col-md-6 mb-25">
+                                <div class="form-group select-px-15 text-end">
+                                    <select class="form-control px-15 text-end" id="freelancer_status" name="freelancer_status" required>
+
+                                        <option class="text-end" selected disabled> حاله المستقل </option>
+                                        <option value="طلب">طلب</option>
+                                        <option value="يوجد">يوجد</option>
+
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col-md-6 mb-25">
                                 <div class="checkbox-theme-default custom-checkbox ">
 <input class="checkbox" value="هام و عاجل" type="checkbox" name="status" id="check-un1">

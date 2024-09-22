@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('request_freelancers', function (Blueprint $table) {
-            $table->enum('freelancer_status',['لا يوجد','يوجد'])->default('لا يوجد');
+            $table->enum('freelancer_status',['طلب','يوجد'])->default('طلب');
         });
     }
 

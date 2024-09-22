@@ -1135,9 +1135,18 @@ public function store_setting(Request $request){
 
 public function all_settings(){
     $setting = Setting::get();
-    $title = "all settings";
-    $description = "all settings";
-    return view('reports.settings.all' , compact("setting" , "title" , "description"));
+    if($setting->first() !== null)
+    {
+        $title = "all settings";
+        $description = "all settings";
+        return view('reports.settings.all' , compact("setting" , "title" , "description"));
+
+    }else
+    {
+        $title = "add budget";
+        $description = "add budget";
+        return view('reports.settings.create' , compact("title" , "description"));
+    }
 
 }
 

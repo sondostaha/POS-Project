@@ -137,6 +137,7 @@
                 <li class="layout"><a class="{{Route::currentRouteName() ==  'management_team' ? 'active' : '' }}" href="{{ route('managementTeam.add',app()->getLocale()) }}">{{ trans('menu.management_team') }}</a></li>
 
                 <li class="layout"><a class="{{Route::currentRouteName() ==  'sales_team' ? 'active' : '' }}" href="{{ route('SalesTeam.add',app()->getLocale()) }}">{{ trans('menu.sales_team') }}</a></li>
+                <li class="layout"><a class="{{Route::currentRouteName() ==  'all_settings' ? 'active' : '' }}" href="{{ route('all_settings',app()->getLocale()) }}">{{ trans('menu.Budgets') }}</a></li>
 
 
             </ul>
@@ -152,11 +153,10 @@
                     </a>
                     <ul>
 {{--                        <li class="layout"><a class="{{Route::currentRouteName() ==  'add_setting' ? 'active' : '' }}" href="{{ route('add_setting',app()->getLocale()) }}">{{ trans('menu.add_budgets') }}</a></li>--}}
-                        <li class="layout"><a class="{{Route::currentRouteName() ==  'all_settings' ? 'active' : '' }}" href="{{ route('all_settings',app()->getLocale()) }}">{{ trans('menu.Budgets') }}</a></li>
 
-                        <li class="layout"><a class="{{Route::currentRouteName() ==  'report_human_manager' ? 'active' : '' }}" href="{{ route('report_human_manager',app()->getLocale()) }}">{{ trans('menu.financial_report_to_the_human_resources_manager') }}</a></li>
-                        <li class="layout"><a class="{{Route::currentRouteName() ==  'report_res_manager' ? 'active' : '' }}" href="{{ route('report_res_manager',app()->getLocale()) }}">{{ trans('menu.financial_report_to_the_human_resources_res') }}</a></li>
-                        {{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'final_report' ? 'active' : '' }}" href="{{ route('final_report',app()->getLocale()) }}">{{ trans('menu.final_report') }}</a></li> --}}
+{{--                        <li class="layout"><a class="{{Route::currentRouteName() ==  'report_human_manager' ? 'active' : '' }}" href="{{ route('report_human_manager',app()->getLocale()) }}">{{ trans('menu.financial_report_to_the_human_resources_manager') }}</a></li>--}}
+{{--                        <li class="layout"><a class="{{Route::currentRouteName() ==  'report_res_manager' ? 'active' : '' }}" href="{{ route('report_res_manager',app()->getLocale()) }}">{{ trans('menu.financial_report_to_the_human_resources_res') }}</a></li>--}}
+{{--                        --}}{{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'final_report' ? 'active' : '' }}" href="{{ route('final_report',app()->getLocale()) }}">{{ trans('menu.final_report') }}</a></li> --}}
 {{--                        <li class="layout"><a class="{{Route::currentRouteName() ==  'order_chart' ? 'active' : '' }}" href="{{ route('order_chart',app()->getLocale()) }}">{{ trans('menu.orders_number') }}</a></li>--}}
 {{--                        <li class="layout"><a class="{{Route::currentRouteName() ==  'Total_revenue' ? 'active' : '' }}" href="{{ route('Total_revenue',app()->getLocale()) }}">{{ trans('menu.Total_revenue') }}</a></li>--}}
 {{--                        <li class="layout"><a class="{{Route::currentRouteName() ==  'Total_freelancers_dues' ? 'active' : '' }}" href="{{ route('Total_freelancers_dues',app()->getLocale()) }}">{{ trans('menu.Total_freelancers_dues') }}</a></li>--}}
@@ -171,9 +171,16 @@
 {{--                        <li class="layout"><a class="{{Route::currentRouteName() ==  'ceo_remuneration' ? 'active' : '' }}" href="{{ route('ceo_remuneration',app()->getLocale()) }}">{{ trans('menu.ceo_remuneration') }}</a></li>--}}
 {{--                        <li class="layout"><a class="{{Route::currentRouteName() ==  'marketing_budget_value' ? 'active' : '' }}" href="{{ route('marketing_budget_value',app()->getLocale()) }}">{{ trans('menu.marketing_budget_value') }}</a></li>--}}
 {{--                        <li class="layout"><a class="{{Route::currentRouteName() ==  'developer_budget_value' ? 'active' : '' }}" href="{{ route('developer_budget_value',app()->getLocale()) }}">{{ trans('menu.developer_budget_value') }}</a></li>--}}
-                        <li class="layout"><a class="{{Route::currentRouteName() ==  'net.profit.report' ? 'active' : '' }}" href="{{ route('net.profit.report',app()->getLocale()) }}">{{ trans('menu.net.profit.report') }}</a></li>
+{{--                        <li class="layout"><a class="{{Route::currentRouteName() ==  'net.profit.report' ? 'active' : '' }}" href="{{ route('net.profit.report',app()->getLocale()) }}">{{ trans('menu.net.profit.report') }}</a></li>--}}
 
-
+                      <li class="layout"><a href="{{ route('inventory.all',app()->getLocale()) }}" class="{{Route::currentRouteName() ==  'inventory.all' ? 'active' : '' }}">
+                            <span class="menu-text">جرد</span>
+                        </a>
+                      </li>
+                        <li class="layout"><a href="{{ route('inventory.update',app()->getLocale()) }}" class="{{Route::currentRouteName() ==  'inventory.report' ? 'active' : '' }}">
+                            <span class="menu-text">تحديثات الحرد</span>
+                        </a>
+                        </li>
                     </ul>
         </li>
 
@@ -213,16 +220,21 @@
 
         {{-- الفرانشيز --}}
 
-        <li class="has-child">
-            <a href="#" class="">
+        <li >
+
+            <a class="" href="{{ route('all_new_franchise',app()->getLocale()) }}">
                 <span class="nav-icon uil uil-window-section"></span>
+
                 <span class="menu-text">{{ trans('menu.franchise') }}</span>
-                <span class="toggle-icon"></span>
+{{--                <span class="toggle-icon"></span>--}}
             </a>
-            <ul>
-                <li class="layout"><a class="{{Route::currentRouteName() ==  'all_new_franchise' ? 'active' : '' }}" href="{{ route('all_new_franchise',app()->getLocale()) }}">{{ trans('menu.all_new_franchise') }}</a></li>
-                {{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'all_franchise' ? 'active' : '' }}" href="{{ route('add_clients',app()->getLocale()) }}">{{ trans('menu.add_franchise') }}</a></li> --}}
-            </ul>
+
+{{--            <ul>--}}
+{{--                <span class="nav-icon uil uil-window-section"></span>--}}
+{{--                --}}
+{{--                <li class="layout"><a class="{{Route::currentRouteName() ==  'all_new_franchise' ? 'active' : '' }}" href="{{ route('all_new_franchise',app()->getLocale()) }}">{{ trans('menu.all_new_franchise') }}</a></li>--}}
+{{--                --}}{{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'all_franchise' ? 'active' : '' }}" href="{{ route('add_clients',app()->getLocale()) }}">{{ trans('menu.add_franchise') }}</a></li> --}}
+{{--            </ul>--}}
         </li>
 
 
@@ -301,38 +313,37 @@
         {{--   المكتبة التعليمية  --}}
 
 
-        <li class="has-child">
-                    <a href="#" class="">
+        <li>
+            <a class="" href="{{ route('create.educational',app()->getLocale()) }}">
                         <span class="nav-icon uil uil-window-section"></span>
                         <span class="menu-text">{{ trans('menu.educational') }}</span>
-                        <span class="toggle-icon"></span>
                     </a>
-                    <ul>
-                        <li class="layout"><a class="{{Route::currentRouteName() ==  'create.educational' ? 'active' : '' }}" href="{{ route('create.educational',app()->getLocale()) }}">{{ trans('menu.add_educational') }}</a></li>
+{{--                    <ul>--}}
+{{--                        <li class="layout"><a class="{{Route::currentRouteName() ==  'create.educational' ? 'active' : '' }}" href="{{ route('create.educational',app()->getLocale()) }}">{{ trans('menu.add_educational') }}</a></li>--}}
 
-                    </ul>
+{{--                    </ul>--}}
         </li>
 
 
 
         {{--   الجرد  --}}
 
-         <li>
-            <a href="{{ route('inventory.all',app()->getLocale()) }}" class="{{Route::currentRouteName() ==  'inventory.all' ? 'active' : '' }}">
-                <span class="nav-icon uil uil-create-dashboard"></span>
-                <span class="menu-text">جرد</span>
-            </a>
+{{--         <li>--}}
+{{--            <a href="{{ route('inventory.all',app()->getLocale()) }}" class="{{Route::currentRouteName() ==  'inventory.all' ? 'active' : '' }}">--}}
+{{--                <span class="nav-icon uil uil-create-dashboard"></span>--}}
+{{--                <span class="menu-text">جرد</span>--}}
+{{--            </a>--}}
 
-        </li>
+{{--        </li>--}}
 
 
-        <li>
-            <a href="{{ route('inventory.update',app()->getLocale()) }}" class="{{Route::currentRouteName() ==  'inventory.report' ? 'active' : '' }}">
-                <span class="nav-icon uil uil-create-dashboard"></span>
-                <span class="menu-text">تحديثات الحرد</span>
-            </a>
+{{--        <li>--}}
+{{--            <a href="{{ route('inventory.update',app()->getLocale()) }}" class="{{Route::currentRouteName() ==  'inventory.report' ? 'active' : '' }}">--}}
+{{--                <span class="nav-icon uil uil-create-dashboard"></span>--}}
+{{--                <span class="menu-text">تحديثات الحرد</span>--}}
+{{--            </a>--}}
 
-        </li>
+{{--        </li>--}}
 
         {{-- الوضع --}}
         {{-- <li class="has-child">

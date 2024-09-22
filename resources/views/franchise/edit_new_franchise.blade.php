@@ -26,7 +26,7 @@
                     <h6>{{ trans('menu.edit_new_franchise') }}</h6>
                 </div>
                 <div class="card-body py-md-30">
-                
+
                     @include('partials._errors')
 
                       <form action="{{route('update_new_franchise' , [app()->getLocale() , $franchise->id])}}" method="POST">
@@ -38,7 +38,7 @@
                             <div class="col-md-6">
                                 <div class="checkbox-theme-default custom-checkbox mb-4 ">
 <input class="checkbox" value="true" type="checkbox" name="access" id="araby" {{ $franchise->access === 'true' ? 'checked' : '' }}>
-                                    
+
                                     <label for="araby">
                                         <span class="checkbox-text">
                                            الوصول إلي قائمة مستقلين المركز العربي
@@ -49,7 +49,7 @@
                             </div>
 
 
-                            <p>مسؤول الفرانشيز:</p>
+                            <p>المدير التنفيذي :</p>
 
                             <div class="col-md-6 mb-25">
                                 <input type="text" name="username" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="اسم المسؤول" value="{{$franchise->username}}">
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
         </div>

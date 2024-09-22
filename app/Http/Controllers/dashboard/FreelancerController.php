@@ -308,8 +308,11 @@ class FreelancerController extends Controller
         $title = "Show Freelancers";
         $description = "Show Freelancers";
         $freelancer = Freelancer::where('id',$id)->with('ratings')->first();
-//        dd($freelancer);
-        return view('freelancers.show_freelancer' , compact("freelancer" , "title" , "description" ));
+        $total_ratting = $freelancer->ratings->sum('rating');
+        $count_rating = $freelancer->ratings->count();
+        $total_value_of_rating = $total_ratting / $count_rating ;
+ //        dd($freelancer);
+        return view('freelancers.show_freelancer' , compact("freelancer" , 'total_value_of_rating',"title" , "description" ));
     }
 
     public function holiday($language , $id){
@@ -622,6 +625,7 @@ public function freelance_status($language ,$id)
             "sub_field_id" => 'required',
             "desc" => 'required',
             "status" => 'required',
+           'freelancer_status' => 'required'
         ]);
 
         $currentUser = Auth::user();

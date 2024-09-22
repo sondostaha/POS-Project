@@ -134,49 +134,16 @@
 
                                     </div>
                                 </div>
-{{--                                <div class="text-center" style="margin-top: -30px;">--}}
-{{--                                    <button type="button" class="btn btn-primary" id="add-setting-btn">+</button>--}}
-{{--                                </div>--}}
-
-{{--                                <script>--}}
-{{--                                    // $(document).ready(function() {--}}
-{{--                                    //--}}
-{{--                                    // }--}}
-{{--                                    const addSettingButton = document.getElementById('add-setting-btn');--}}
-{{--                                    const inputContainer = document.getElementById('setting-container');--}}
-{{--                                    // console.log(inputContainer);--}}
-{{--                                    addSettingButton.addEventListener('click', () => {--}}
-{{--                                        // console.log(inputContainer)--}}
-{{--                                        const newRow = document.createElement('div');--}}
-{{--                                        // console.log(newRow)--}}
-{{--                                        newRow.className =  'row setting-row';--}}
-
-{{--                                        newRow.innerHTML = `--}}
-{{--                                    <div class="col-md-6 mb-25">--}}
-{{--                                        <input id="title" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="قيمة ميزانية التسويق" name="title[]" >--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-6 mb-25">--}}
-{{--                                        <input id="cost" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="10%" name="cost[]" >--}}
-{{--                                    </div>--}}
-{{--                                    `;--}}
-{{--                                        inputContainer.appendChild(newRow);--}}
-{{--                                    });--}}
-{{--                                </script>--}}
-
                                 <br>
-                                <div class="text-center" style="margin-top: -30px;">
-                                    <a href="{{route('delete_setting', [app()->getLocale(), $set->id])}}" class="btn btn-danger btn-default btn-squared px-30">حذف</a>
-                                </div>
+
                                 <div class="col-md-6 mb-2">
                                     <div class="layout-button mt-0">
+                                        <a href="{{route('delete_setting', [app()->getLocale(), $set->id])}}" class="btn btn-danger btn-default btn-squared px-30">حذف</a>
+
                                         <button type="submit" class="btn btn-primary btn-default btn-squared px-30">تعديل</button>
                                     </div>
                                 </div>
-{{--                                <div class="col-md-6 mb-2" dir="ltr">--}}
-{{--                                    <div class="layout-button mt-0">--}}
-{{--                                        <a href="{{route('delete_setting', [app()->getLocale(), $set->id])}}" class="btn btn-danger btn-default btn-squared px-30">حذف</a>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+
                             </form>
                                 @endforeach
 

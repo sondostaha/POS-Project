@@ -61,6 +61,8 @@
                                       <th class="wd-15p border-bottom-0 " >id</th>
 
                                       <th class="wd-15p border-bottom-0 " >وكيل المبيعات</th>
+                                        <th class="wd-15p border-bottom-0 " >مسؤول المبيعات</th>
+
                                       <th class="wd-10p border-bottom-0 " >تاريخ التواصل</th>
                                       <th class="wd-10p border-bottom-0 " >الأسم</th>
                                       <th class="wd-15p border-bottom-0 " >الجنسية</th>
@@ -82,6 +84,7 @@
 
                                         <td>{{$client->id}}</td>
                                         <td>{{$client->user->name}}</td>
+                                        <td>{{\App\Models\User::where('id',$client->user->manager_id)->pluck('name')->first()}}</td>
                                         <td>{{ date('Y-m-d', strtotime($client->created_at)) }}</td>
 
                                         <td>{{$client->name}}</td>

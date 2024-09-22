@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
         // $role = Role::create(['name' => 'مدير التسويق']);
         // $role = Role::create(['name' => 'المدير التقني']);
         // $role = Role::create(['name' => 'مدير الموارد البشرية']);
-        // $role = Role::create(['name' => 'مسؤول الفرانشيز']);
         // $role = Role::create(['name' => 'مسؤول الموارد البشرية']);
         // // $role->givePermissionTo('edit articles');
         // $role = Role::create(['name' => 'مسؤول مبيعات']);
@@ -39,7 +38,7 @@ class DatabaseSeeder extends Seeder
         // $role = Role::create(['name' => 'admin']);
         // $role->givePermissionTo(['edit articles', 'delete articles']);
 
-        
+
 
     }
 }

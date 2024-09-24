@@ -41,14 +41,15 @@ public function SecStepSalesTeam()
     $franchiseId = Auth::user()->new_franchise_id;
     $sales_team = SalesTeam::where('new_franchise_id',$franchiseId)->first();
     $sales_agent = $sales_team->sales_agent;
+
     $sales_officer = $sales_team->sales_officer;
-    $valueOfSalesAgent = $fainlTotalOrderValue * ($sales_agent/100);
 
-    $valueOfSalesOfficer = $fainlTotalOrderValue * ($sales_officer/100);
-    $salesValue = $valueOfSalesOfficer + $valueOfSalesAgent;
+    $calcOfSalesAgent = ($fainlTotalOrderValue * ($sales_agent/100)) + $sales_team->sales_agent_salary;
+    $calcOfSalesOfficer = ($fainlTotalOrderValue * ($sales_officer/100)) + $sales_team->sales_officer_salary;
+
+    $salesValue = $calcOfSalesAgent + $calcOfSalesOfficer;
     $finalValueOfOrder = $fainlTotalOrderValue - $salesValue;
-
-    return  ['sales_agent' =>$valueOfSalesAgent,'sales_officer' =>$valueOfSalesOfficer,'finalValueOfOrder' => $finalValueOfOrder];
+    return  ['sales_agent' =>$calcOfSalesAgent,'sales_officer' =>$calcOfSalesOfficer,'finalValueOfOrder' => $finalValueOfOrder];
 
 }
 public function ThStepSetting()
@@ -56,8 +57,9 @@ public function ThStepSetting()
     $salesTeam = $this->SecStepSalesTeam();
     $valueOfTotalOrder = $salesTeam['finalValueOfOrder'];
     $setting = Setting::get();
+    $salary = $setting->sum('salary');
     $settingCost = $setting->sum('cost');
-    $valueOfSetting = $valueOfTotalOrder * ($settingCost/100);
+    $valueOfSetting = ($valueOfTotalOrder * ($settingCost/100)) + $salary;
     $finalValueOfSetting = $valueOfTotalOrder - $valueOfSetting;
     return ['setting' => $valueOfSetting,'finalValueOfSetting' => $finalValueOfSetting];
 }
@@ -66,13 +68,14 @@ public function FourthStepManagmentTeam()
     $setting = $this->ThStepSetting();
     $valueOfTotalOrder = $setting['finalValueOfSetting'];
     $managementTeam = ManagementTeam::first();
-    $sales_manager = $valueOfTotalOrder *($managementTeam->sales_manager/100);
-    $marketing_manager = $valueOfTotalOrder *($managementTeam->marketing_manager/100);
+    $sales_manager = ($valueOfTotalOrder *($managementTeam->sales_manager/100)) +$managementTeam->sales_manager_salary; ;
 
-    $technical_director =$valueOfTotalOrder *($managementTeam->technical_director/100);
-    $CFO = $valueOfTotalOrder *($managementTeam->CFO/100);
-    $CEO = $valueOfTotalOrder *($managementTeam->CEO/100);
-    $hr_managerDues =  $valueOfTotalOrder *($managementTeam->hr_manager/100);
+    $marketing_manager = ($valueOfTotalOrder *($managementTeam->marketing_manager/100)) + $managementTeam->marketing_manager_salary;
+
+    $technical_director =($valueOfTotalOrder *($managementTeam->technical_director/100))+ $managementTeam->technical_director_salary;
+    $CFO = ($valueOfTotalOrder *($managementTeam->CFO/100)) + $managementTeam->CFO_salary;
+    $CEO = ($valueOfTotalOrder *($managementTeam->CEO/100)) + $managementTeam->CEO_salary;
+    $hr_managerDues =  ($valueOfTotalOrder *($managementTeam->hr_manager/100)) + $managementTeam->hr_manager_salary;
     $totalOfManagementTeam = $sales_manager + $technical_director + $CFO + $CEO + $hr_managerDues + $marketing_manager;
 //    $valueOfManageTeam = $valueOfTotalOrder * ($totalOfManagementTeam/100);
     $finalValueOfManageTeam = $valueOfTotalOrder - $totalOfManagementTeam;
@@ -119,22 +122,20 @@ private  function storeGeneralInventory ($totalRevenue,$netProfit,$totalFreelanc
             $delete_inventory = $inventory;
             if($last_inventor->id != $delete_inventory->id){
                 $inventory = GeneralInventory::create([
-                    'totalRevenue' => $delete_inventory->totalRevenue,
-                    'netProfit' => $delete_inventory->netProfit,
-                    'totalFreelancerDues' => $delete_inventory->totalFreelancerDues,
-                    'affiliateMarketersCommission' => $delete_inventory->affiliateMarketersCommission,
-                    'agentSalesCommission' => $delete_inventory->agentAndSalesManagerCommission,
+                    'totalRevenue' => $totalRevenue,
+                    'netProfit' => $netProfit,
+                    'totalFreelancerDues' => $totalFreelancerDues,
+                    'affiliateMarketersCommission' => $affiliateMarketersCommission,
+                    'agentSalesCommission' => $agentSalesCommission,
                     'salesOfficerCommission' => $sales_officer,
-                    'salesManagerDues' => $delete_inventory->salesManagerDues,
+                    'salesManagerDues' => $salesManagerDues,
                     'marketing_manager' => $marketing_manager,
-                    'technicalDirectorDues' => $delete_inventory->technicalDirectorDues,
-                    'financialOfficerDues' => $delete_inventory->financialOfficerDues,
-                     'hr_managerDues' => $hr_managerDues,
-                    'ceoRemuneration' => $delete_inventory->ceoRemuneration,
-                    'marketingBudget' => $delete_inventory->marketingBudget,
-                    'developerBudget' => $delete_inventory->developerBudget,
-                    'totalSetting' => $delete_inventory->totalSetting,
-                    'new_franchise_id' => $delete_inventory->new_franchise_id,
+                    'technicalDirectorDues' => $technicalDirectorDues,
+                    'financialOfficerDues' => $financialOfficerDues,
+                    'hr_managerDues' => $hr_managerDues,
+                    'ceoRemuneration' => $ceoRemuneration,
+                    'totalSetting' => $totalSetting,
+                    'new_franchise_id' => $franchiseId,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'main_field' => $main_field,
                 ]);

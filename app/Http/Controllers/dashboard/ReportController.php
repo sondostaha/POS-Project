@@ -1099,6 +1099,7 @@ public function store_setting(Request $request){
    $data = $request->validate([
         "title" => 'required',
         "cost" => 'required',
+        'salary' => 'required'
 //        "other_expenses" => 'required',
     ]);
 //   dd($data);
@@ -1111,17 +1112,34 @@ public function store_setting(Request $request){
 //    $title  = $data['title'];
 //    $cost  = $data['cost'];
 //dd($cost);
-    foreach ($data['title'] as $index => $value) {
+//    dd($data['title']);
+//    if(is_array($data['title'])){
+        foreach ($data['title'] as $index => $value) {
 
 //        dd($data['cost'][$index]);
-        $cost = $data['cost'][$index];
-        Setting::create([
-            'title' => $value,
-            'cost' => $cost,
-            'new_franchise_id' => $data['new_franchise_id'],
-        ]);
+//            $data['cost'] =intval( str_replace('%','',$data['cost'][$index]));
 
-    }
+            $cost = intval( str_replace('%','',$data['cost'][$index]));
+            $salary = $data['salary'][$index];
+
+            Setting::create([
+                'title' => $value,
+                'cost' => $cost,
+                'salary' => $salary,
+                'new_franchise_id' => $data['new_franchise_id'],
+            ]);
+
+        }
+
+//    }else
+//    {
+//        Setting::create([
+//            'title' => $data['value'],
+//            'cost' => $data['cost'],
+//            'salary' => $data['salary'],
+//            'new_franchise_id' => $data['new_franchise_id'],
+//        ]);
+//    }
 
     $notification = array(
         'message' => 'تمت الاضافة بنجاح',
@@ -1163,7 +1181,9 @@ public function update_setting(Request $request , $language , $id){
     $data = $request->validate([
         "title" => 'required',
         "cost" => 'required',
+        'salary' => 'required'
     ]);
+    $data['cost'] =intval( str_replace('%','',$data['cost']));
 
     $setting = Setting::findOrFail($id);
 

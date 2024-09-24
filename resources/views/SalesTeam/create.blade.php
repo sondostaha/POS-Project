@@ -35,30 +35,55 @@
                             @if(isset($SalesTeams))
 
                             <div class="col-md-6 mb-25">
-                                <p style="color:#000;font-weight: bolder;"> وكيل المبيعات  :</p>
+                                <p style="color:#000;font-weight: bolder;">نسبه وكيل المبيعات  :</p>
 
                                     <input type="text" name="sales_agent" class="form-control ih-medium ip-gray radius-xs b-light px-15"   value="{{$SalesTeams->sales_agent}}">
 
                             </div>
                                 <div class="col-md-6 mb-25">
-                                    <p style="color:#000;font-weight: bolder;"> مسؤول المبيعات :</p>
+                                    <p style="color:#000;font-weight: bolder;">مرتب وكيل المبيعات  :</p>
+
+                                    <input type="text" name="sales_agent_salary" class="form-control ih-medium ip-gray radius-xs b-light px-15"   value="{{$SalesTeams->sales_agent_salary}}">
+
+                                </div>
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">نسبه مسؤول المبيعات :</p>
 
 
                                     <input type="text" name="sales_officer" class="form-control ih-medium ip-gray radius-xs b-light px-15"   value="{{$SalesTeams->sales_officer}}">
 
                                 </div>
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">مرتب مسؤول المبيعات :</p>
+
+
+                                    <input type="text" name="sales_officer_salary" class="form-control ih-medium ip-gray radius-xs b-light px-15"   value="{{$SalesTeams->sales_officer_salary}}">
+
+                                </div>
 
                             @else
                                 <div class="col-md-6 mb-25">
-                                    <p style="color:#000;font-weight: bolder;"> وكيل المبيعات  :</p>
+                                    <p style="color:#000;font-weight: bolder;">نسبه وكيل المبيعات  :</p>
 
                                     <input type="text" name="sales_agent" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="نسبه وكيل المبيعات" value="">
 
                                 </div>
                                 <div class="col-md-6 mb-25">
-                                    <p style="color:#000;font-weight: bolder;"> مسؤول المبيعات :</p>
+                                    <p style="color:#000;font-weight: bolder;">مرتب وكيل المبيعات  :</p>
+
+                                    <input type="text" name="sales_agent_salary" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="مرتب وكيل المبيعات" value="">
+
+                                </div>
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">نسبه مسؤول المبيعات :</p>
 
                                     <input type="text" name="sales_officer" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="نسبه مسؤول المبيعات" value="">
+
+                                </div>
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;"> مرتب مسؤول المبيعات :</p>
+
+                                    <input type="text" name="sales_officer_salary" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="مرتب مسؤول المبيعات" value="">
 
                                 </div>
 

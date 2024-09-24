@@ -34,11 +34,14 @@
                 <div id="setting-container">
 
                     <div class="row setting-row">
-                    <div class="col-md-6 mb-25">
+                    <div class="col-md-4 mb-25">
                         <input id="title" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="قيمة ميزانية التسويق" name="title[]" required>
                     </div>
-                    <div class="col-md-6 mb-25">
-                        <input id="cost" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="10%" name="cost[]" required>
+                    <div class="col-md-4 mb-25">
+                        <input id="cost" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15"  placeholder="10% برجاء ادخال النسبه" name="cost[]" required>
+                    </div>
+                    <div class="col-md-4 mb-25">
+                        <input id="salary" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="برجاء ادخال المرتب" name="salary[]" required>
                     </div>
 
                 </div>
@@ -62,12 +65,15 @@
                         newRow.className =  'row setting-row';
 
                         newRow.innerHTML = `
-        <div class="col-md-6 mb-25">
+        <div class="col-md-4 mb-25">
             <input id="title" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="قيمة ميزانية التسويق" name="title[]" >
         </div>
-        <div class="col-md-6 mb-25">
-            <input id="cost" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="10%" name="cost[]" >
+        <div class="col-md-4 mb-25">
+            <input id="cost" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="10% برجاء ادخال النسبه" name="cost[]" >
         </div>
+        <div class="col-md-4 mb-25">
+             <input id="salary" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="برجاء ادخال المرتب" name="salary[]" >
+         </div>
         `;
                         inputContainer.appendChild(newRow);
                     });

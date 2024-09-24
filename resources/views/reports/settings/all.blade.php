@@ -125,11 +125,17 @@
                                 <div id="setting-container">
 
                                     <div class="row setting-row">
-                                        <div class="col-md-6 mb-25">
+                                        <div class="col-md-4 mb-25">
+                                            <p style="color:#000;font-weight: bolder;">الميزانيه : </p>
                                             <input id="title" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" value="{{$set->title}}" name="title" required>
                                         </div>
-                                        <div class="col-md-6 mb-25">
+                                        <div class="col-md-4 mb-25">
+                                            <p style="color:#000;font-weight: bolder;">النسبه : </p>
                                             <input id="cost" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" value="{{$set->cost}}" name="cost" required>
+                                        </div>
+                                        <div class="col-md-4 mb-25">
+                                            <p style="color:#000;font-weight: bolder;">المرتب : </p>
+                                            <input id="cost" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" value="{{$set->salary}}" name="salary" required>
                                         </div>
 
                                     </div>

@@ -32,11 +32,14 @@
             <form action="{{route('update_setting',[app()->getLocale() , $setting->id])}}" method="POST">
                 @csrf
                 <div class="row">
-                    <div class="col-md-6 mb-25">
+                    <div class="col-md-4 mb-25">
                         <input type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="قيمة ميزانية التسويق" name="title" value="{{$setting->title}}" required>
                     </div>
-                    <div class="col-md-6 mb-25">
+                    <div class="col-md-4 mb-25">
                         <input type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="قيمة ميزانية التطوير" name="cost" value="{{$setting->cost}}" required>
+                    </div>
+                    <div class="col-md-4 mb-25">
+                        <input type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="قيمة ميزانية التطوير" name="salary" value="{{$setting->salary}}" required>
                     </div>
 
                     <div class="col-md-6">

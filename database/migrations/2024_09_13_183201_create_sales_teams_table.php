@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('sales_teams', function (Blueprint $table) {
             $table->id();
+            $table->integer('sales_agent_salary'); //وكيل المبيعات
             $table->integer('sales_agent'); //وكيل المبيعات
+            $table->integer('sales_officer_salary'); // مسؤول المبيعات
             $table->integer('sales_officer'); // مسؤول المبيعات
             $table->foreignId('new_franchise_id')->constrained('new_franchises')->onDelete('cascade')->onUpdate('cascade')->nullable();
 

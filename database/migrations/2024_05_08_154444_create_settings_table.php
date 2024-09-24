@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string("title");
             $table->string("cost");
+            $table->string("salary");
+
 //            $table->string("other_expenses");
 
             $table->foreignId('new_franchise_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');

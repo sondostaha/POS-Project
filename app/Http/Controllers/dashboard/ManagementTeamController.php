@@ -28,11 +28,25 @@ class ManagementTeamController extends Controller
     {
         $data = $request->validate([
             'sales_manager' => 'required',
+            'sales_manager_salary' => 'required',
             'technical_director' => 'required',
+            'technical_director_salary' => 'required',
             'CFO' => 'required',
+            'CFO_salary' => 'required',
+            'CEO_salary' => 'required',
             'CEO' => 'required',
+            'marketing_manager_salary'=> 'required',
+            'marketing_manager'=> 'required',
+            'hr_manager_salary' => 'required',
             'hr_manager' => 'required',
-                ]);
+        ]);
+        $data['sales_manager'] =intval( str_replace('%','',$data['sales_manager']));
+        $data['technical_director'] =intval( str_replace('%','',$data['technical_director']));
+        $data['CFO'] =intval( str_replace('%','',$data['CFO']));
+        $data['CEO'] =intval( str_replace('%','',$data['CEO']));
+        $data['hr_manager'] =intval( str_replace('%','',$data['hr_manager']));
+        $data['marketing_manager'] =intval( str_replace('%','',$data['marketing_manager']));
+
         $currentUser = Auth::user();
         if ($currentUser && $currentUser->new_franchise_id) {
             $data['new_franchise_id'] = $currentUser->new_franchise_id;
@@ -64,11 +78,25 @@ class ManagementTeamController extends Controller
     {
         $data = $request->validate([
             'sales_manager' => 'required',
+            'sales_manager_salary' => 'required',
             'technical_director' => 'required',
+            'technical_director_salary' => 'required',
             'CFO' => 'required',
+            'CFO_salary' => 'required',
+            'CEO_salary' => 'required',
             'CEO' => 'required',
+            'marketing_manager_salary'=> 'required',
+            'marketing_manager'=> 'required',
+            'hr_manager_salary' => 'required',
             'hr_manager' => 'required',
         ]);
+        $data['sales_manager'] =intval( str_replace('%','',$data['sales_manager']));
+        $data['technical_director'] =intval( str_replace('%','',$data['technical_director']));
+        $data['CFO'] =intval( str_replace('%','',$data['CFO']));
+        $data['CEO'] =intval( str_replace('%','',$data['CEO']));
+        $data['hr_manager'] =intval( str_replace('%','',$data['hr_manager']));
+        $data['marketing_manager'] =intval( str_replace('%','',$data['marketing_manager']));
+
         $currentUser = Auth::user();
         if ($currentUser && $currentUser->new_franchise_id) {
             $data['new_franchise_id'] = $currentUser->new_franchise_id;

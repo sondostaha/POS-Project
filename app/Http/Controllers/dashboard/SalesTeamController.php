@@ -28,9 +28,15 @@ class SalesTeamController extends Controller
     {
         $data = $request->validate([
             'sales_agent' => 'required',
+            'sales_agent_salary' => 'required',
             'sales_officer' => 'required',
+            'sales_officer_salary' => 'required',
 
         ]);
+        $data['sales_agent'] =intval( str_replace('%','',$data['sales_agent']));
+        $data['sales_officer'] =intval( str_replace('%','',$data['sales_officer']));
+
+
         $currentUser = Auth::user();
         if ($currentUser && $currentUser->new_franchise_id) {
             $data['new_franchise_id'] = $currentUser->new_franchise_id;
@@ -62,9 +68,13 @@ class SalesTeamController extends Controller
     {
         $data = $request->validate([
             'sales_agent' => 'required',
+            'sales_agent_salary' => 'required',
             'sales_officer' => 'required',
+            'sales_officer_salary' => 'required',
 
         ]);
+        $data['sales_agent'] =intval( str_replace('%','',$data['sales_agent']));
+        $data['sales_officer'] =intval( str_replace('%','',$data['sales_officer']));
         $currentUser = Auth::user();
         if ($currentUser && $currentUser->new_franchise_id) {
             $data['new_franchise_id'] = $currentUser->new_franchise_id;

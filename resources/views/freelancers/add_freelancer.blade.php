@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 mb-25">
-                                <input type="text" name="products" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="المنتجات" value="{{old('products')}}">
+                                <input type="text" name="products" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="المنتجات او الخدمات" value="{{old('products')}}">
                             </div>
                             <div class="col-md-6 mb-25">
                                 <input type="text" name="languages" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="اللغات" value="{{old('languages')}}">

@@ -35,12 +35,15 @@
 
                                 <div class="row setting-row">
                                     <div class="col-md-4 mb-25">
+                                        <p style="color:#000;font-weight: bolder;">الميزانية</p>
                                         <input id="title" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="قيمة ميزانية التسويق" name="title[]" required>
                                     </div>
                                     <div class="col-md-4 mb-25">
+                                         <p style="color:#000;font-weight: bolder;">النسبة</p>
                                         <input id="cost" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15"  placeholder="10% برجاء ادخال النسبة" name="cost[]" required>
                                     </div>
                                     <div class="col-md-4 mb-25">
+                                         <p style="color:#000;font-weight: bolder;">القيمة</p>
                                         <input id="salary" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="برجاء ادخال القيمة" name="salary[]" required>
                                     </div>
 

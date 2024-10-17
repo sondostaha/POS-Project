@@ -40,15 +40,15 @@
                     <div id="setting-container">
                         <div class="row setting-row">
                             <div class="col-md-4 mb-25">
-                                <p>الميزانية</p>
+                                <p style="color:#000;font-weight: bolder;">الميزانية</p>
                                 <input id="title" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" value="{{$set->title}}" name="title" placeholder="قيمة ميزانية التسويق" required>
                             </div>
                             <div class="col-md-4 mb-25">
-                                <p>النسبة</p>
+                                <p style="color:#000;font-weight: bolder;">النسبة</p>
                                 <input id="cost" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" value="{{$set->cost}}" name="cost" placeholder="10% برجاء ادخال النسبة" required>
                             </div>
                             <div class="col-md-4 mb-25">
-                                <p>القيمة</p>
+                                <p style="color:#000;font-weight: bolder;">القيمة</p>
                                 <input id="salary" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" value="{{$set->salary}}" name="salary" placeholder="برجاء ادخال المرتب" required>
                             </div>
                         </div>

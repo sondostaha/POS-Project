@@ -88,7 +88,7 @@
 
                             <div class="col-md-6 mb-25">
                                         <select name="what" id="countryOption2" class="form-control">
-                                            <option value="">الماهية</option>
+                                            <option value="">الماةية</option>
                                             @if ($client->what == "فرد")
 
                                             <option value="فرد" selected>فرد</option>
@@ -143,7 +143,7 @@
 
                             <div class="col-md-6 mb-25">
                                         <select name="important" id="countryOption4" class="form-control px-15 ">
-                                            <option value="">الأهمية</option>
+                                            <option value="">الأةمية</option>
                                             @if($client->important == "1")
                                             <option selected value="1">1</option>
                                             @elseif($client->important == "2")

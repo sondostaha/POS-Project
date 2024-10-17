@@ -176,12 +176,12 @@
 <script>
 function confirmDelete(url) {
     Swal.fire({
-        title: 'هل انت متأكد؟',
+        title: 'ةل انت متأكد؟',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'نعم ، احذفه',
+        confirmButtonText: 'نعم ، احذفة',
         cancelButtonText: 'لا',
 
     }).then((result) => {

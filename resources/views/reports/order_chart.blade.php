@@ -50,7 +50,7 @@
                         options: {
                     responsive: true,
                     maintainAspectRatio: true,
-                    aspectRatio: 2,  // تعديل هذه القيمة لتغيير حجم الدائرة
+                    aspectRatio: 2,  // تعديل ةذة القيمة لتغيير حجم الدائرة
                     plugins: {
                         legend: {
                             position: 'top',

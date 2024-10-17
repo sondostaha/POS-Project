@@ -12,7 +12,7 @@
         <th class="wd-10p border-bottom-0 " >اللغة</th> --}}
         <th class="wd-10p border-bottom-0 " >الشهادة العلمية ومجال العمل الأساسي</th>
         <th class="wd-10p border-bottom-0 " >مجالات العمل الرئيسية عن بعد</th>
-        <th class="wd-10p border-bottom-0 " >المنتجات التي يمكنك تقديمها</th>
+        <th class="wd-10p border-bottom-0 " >المنتجات</th>
         <th class="wd-10p border-bottom-0 " >اللغات</th>
         <th class="wd-10p border-bottom-0 " >رقم الواتساب او الفيس بوك</th>
         <th class="wd-10p border-bottom-0 " >رقم فودافون كاش</th>
@@ -36,7 +36,7 @@
         <td >{{$freelancer->wphone}}</td>
         <td >{{$freelancer->vphone}}</td>
         <td >{{$freelancer->cv}}</td>
-        
+
         <td >
           <a href="" title = "تعديل الطالب" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
 

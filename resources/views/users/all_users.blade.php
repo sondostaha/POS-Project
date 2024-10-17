@@ -61,9 +61,9 @@
                                     <tr>
                                         <th class="wd-15p border-bottom-0">id</th>
                                         <th class="wd-15p border-bottom-0">اللقب</th>
-                                        <th class="wd-15p border-bottom-0">الأسم</th>
+                                        <th class="wd-15p border-bottom-0">الاسم</th>
                                         <th class="wd-15p border-bottom-0">البريد الإلكتروني</th>
-                                        <th class="wd-15p border-bottom-0">الرتبه</th>
+                                        <th class="wd-15p border-bottom-0">الرتبة</th>
                                         <th class="wd-15p border-bottom-0">مسؤول المبيعات</th>
                                         <th class="wd-10p border-bottom-0">رقم الموبايل</th>
                                         <th class="wd-10p border-bottom-0">نبذة</th>
@@ -71,7 +71,8 @@
                                         <th class="wd-15p border-bottom-0">فيسبوك</th>
                                         <th class="wd-10p border-bottom-0">بيانات الدفع</th>
                                         <th class="wd-10p border-bottom-0">فودافون كاش</th>
-                                        <th class="wd-10p border-bottom-0">الرقم القومي</th>
+                                        <!-- <th class="wd-10p border-bottom-0">الرقم القومي</th> -->
+                                        <th class="wd-10p border-bottom-0">كلمة المرور </th>
                                         <th class="wd-10p border-bottom-0">العمليات</th>
                                     </tr>
                                 </thead>
@@ -100,7 +101,20 @@
                                         <td>{{ $user->facebook }}</td>
                                         <td>{{ $user->pay }}</td>
                                         <td>{{ $user->vcashe }}</td>
-                                        <td>{{ $user->card }}</td>
+                                        <!-- <td>{{ $user->card }}</td> -->
+                                        <td>
+    <div class="userDatatable-content">
+        @php
+        try {
+            $decryptedPassword = Crypt::decryptString($user->password);
+            echo $decryptedPassword;
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            // البيانات إما غير مشفرة أو تالفة
+            echo $user->password;
+        }
+        @endphp
+    </div>
+</td>
                                         <td>
                                             <ul class="orderDatatable_actions mb-0 d-flex">
                                                 <li>
@@ -210,12 +224,12 @@ $("document").ready(function () {
 <script>
 function confirmDelete(url) {
     Swal.fire({
-        title: 'هل انت متأكد؟',
+        title: 'ةل انت متأكد؟',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'نعم ، احذفه',
+        confirmButtonText: 'نعم ، احذفة',
         cancelButtonText: 'لا',
 
     }).then((result) => {

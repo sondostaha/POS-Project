@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-25">
                                 <div class="form-group select-px-15 text-end">
-                    
+
                                     <select class="form-control px-15 text-end" id="mainField" name="main_field_id" required>
                                         <option class="text-end" selected disabled>مجال العمل الرئيسي</option>
                                         @foreach($mainfields as $field)
@@ -41,14 +41,14 @@
                                             {{$field->title}}
                                             </option>
                                         @endforeach
-                                            
+
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-md-6 mb-25">
                                 <div class="form-group select-px-15 text-end">
-            
+
                                     <select class="form-control px-15 text-end" id="countryOption0909" name="sub_field_id" required>
                                             <option class="text-end" selected disabled>مجال العمل الفرعي</option>
                                         @foreach ($subfields as $field )

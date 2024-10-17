@@ -89,7 +89,7 @@ class SalesTeamController extends Controller
             return redirect()->route('SalesTeam.add', app()->getLocale())->with($notification);
         }
         $notification = [
-            'massage' => 'حدث خطاء برجاء المحاوله ثانيا',
+            'massage' => 'حدث خطاء برجاء المحاولة ثانيا',
             'status' => 'error'
         ];
         return redirect()->route('SalesTeam.add', app()->getLocale())->with($notification);

@@ -74,7 +74,7 @@
 
     <div class="col-md-6 mb-25">
         <select name="what" id="countryOption2" class="form-control">
-            <option value="" >الماهية</option>
+            <option value="" >الماةية</option>
             <option value="فرد" >فرد</option>
             <option value="شركة" >شركة</option>
             <option value="وسيط" >وسيط</option>
@@ -94,7 +94,7 @@
 
                             <div class="col-md-6 mb-25">
                                         <select name="important" id="countryOption4" class="form-control px-15 ">
-                                            <option value="">الأهمية</option>
+                                            <option value="">الأةمية</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>

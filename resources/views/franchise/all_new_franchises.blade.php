@@ -111,9 +111,9 @@
 
                                                 <div class="userDatatable-inline-title">
                                                     @if ($franchise->access == "true")
-                                                    <h6>لديه صلاحية الوصول</h6>
+                                                    <h6>لدية صلاحية الوصول</h6>
                                                     @else
-                                                    <h6>ليس لديه صلاحية الوصول</h6>
+                                                    <h6>ليس لدية صلاحية الوصول</h6>
                                                     @endif
 
                                                 </div>
@@ -221,12 +221,12 @@ $("document").ready(function () {
 <script>
 function confirmDelete(url) {
     Swal.fire({
-        title: 'هل انت متأكد؟',
+        title: 'ةل انت متأكد؟',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'نعم ، احذفه',
+        confirmButtonText: 'نعم ، احذفة',
         cancelButtonText: 'لا',
 
     }).then((result) => {

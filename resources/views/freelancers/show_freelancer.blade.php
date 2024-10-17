@@ -143,12 +143,12 @@
                                     </tr>
 
                                     <tr>
-                                        <td>مجال العمل الرئيسي : </td>
+                                        <td>مجال العمل الرئيسي  </td>
                                         <td>:</td>
                                         <td>{{ $freelancer->main_field->title }}</td>
                                     </tr>
                                     <tr>
-                                        <td>مجال العمل الفرعي : </td>
+                                        <td>مجال العمل الفرعي  </td>
                                         <td>:</td>
                                         <td>{{ $freelancer->sub_field->title }}</td>
                                     </tr>
@@ -163,7 +163,7 @@
                                         <td>{{ $freelancer->languages }}</td>
                                     </tr>
                                     <tr>
-                                        <td>المنتجات التي يقدمها</td>
+                                        <td>المنتجات او الخدمات</td>
                                         <td>:</td>
                                         <td>{{ $freelancer->products }}</td>
                                     </tr>
@@ -182,7 +182,7 @@
                                         <td>:</td>
 
 {{--                                            {{ $rate->rating }}--}}
-                                        <td>: {{$total_value_of_rating}}</td>
+                                        <td> {{$total_value_of_rating}}</td>
                                     </tr>
 
                                             @else
@@ -238,19 +238,19 @@
                                             </div>
 
                                         </form>
-                                        @foreach($freelancer->ratings as $rate)
-                                            <tr>
-                                                <td> التقيم  </td>
-                                                <td> :</td>
-                                                <td>{{$rate->rating}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>تعليق علي التقيم  </td>
-                                                <td> :</td>
-                                                <td>{{$rate->comment}}</td>
-                                            </tr>
+<div class="rating-list">
+    @foreach($freelancer->ratings as $rate)
+        <div class="rating-item" style="border-bottom: 1px solid #ccc; padding: 10px 0;">
+            <p style="font-size: 15px; margin: 0; color: #333;">
+                <strong>التقييم:</strong> {{$rate->rating}}
+            </p>
+            <p style="font-size: 15px; margin: 0; color: #555;">
+                <strong>التعليق :</strong> {{$rate->comment}}
+            </p>
+        </div>
+    @endforeach
+</div>
 
-                                        @endforeach
                                     </div>
                                 </div>
                             </div>

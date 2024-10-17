@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 class EducationalController extends Controller
 {
     public function create(){
-        $title = "المكتبة التلعليمية";
-        $description = "المكتبة التلعليمية";
+        $title = "المكتبة التعليمية";
+        $description = "المكتبة التعليمية";
         $educational = Educational::first();
 
         return view('educationals.create' , compact( 'educational',"title" , "description"));
@@ -42,8 +42,8 @@ class EducationalController extends Controller
 
     public function all(){
         $educationals = Educational::all();
-                $title = "المكتبة التلعليمية";
-        $description = "المكتبة التلعليمية";
+                $title = "المكتبة التعليمية";
+        $description = "المكتبة التعليمية";
 
     return view('educationals.all' , compact("title" , "description" , "educationals"));
 
@@ -56,8 +56,8 @@ class EducationalController extends Controller
         $educational = Educational::findOrFail($id);
 
 
-        $title = "المكتبة التلعليمية";
-        $description = "المكتبة التلعليمية";
+        $title = "المكتبة التعليمية";
+        $description = "المكتبة التعليمية";
 
                 return view('educationals.edit' , compact( "title" , "description" , "educational"));
 

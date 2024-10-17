@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('sub_field_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string("desc");
             $table->enum('status', ['هام و عاجل', 'هام وغير عاجل' , 'غير هام وغير عاجل']);
-            
+
             $table->foreignId('new_franchise_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();

@@ -63,7 +63,7 @@
                                         <th class="wd-15p border-bottom-0 " >المدير التقني</th>
                                         <th class="wd-15p border-bottom-0 " >المدير المالي</th>
                                         <th class="wd-15p border-bottom-0 " >المدير التنفيذي</th>
-                                        <th class="wd-15p border-bottom-0 " >مدير الموارد البشريه</th>
+                                        <th class="wd-15p border-bottom-0 " >مدير الموارد البشرية</th>
 
                                       <th class="wd-10p border-bottom-0 " >العمليات</th>
                                     </tr>
@@ -198,12 +198,12 @@ $("document").ready(function () {
 <script>
 function confirmDelete(url) {
     Swal.fire({
-        title: 'هل انت متأكد؟',
+        title: 'ةل انت متأكد؟',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'نعم ، احذفه',
+        confirmButtonText: 'نعم ، احذفة',
         cancelButtonText: 'لا',
 
     }).then((result) => {

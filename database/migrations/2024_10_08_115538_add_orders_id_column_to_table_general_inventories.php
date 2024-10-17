@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->enum('status',['ملغي','مسلم','قيد المراجعة او التعديل','جاري'])->default('جاري');
+        Schema::table('general_inventories', function (Blueprint $table) {
+            $table->json('orders_id');
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
+        Schema::table('general_inventories', function (Blueprint $table) {
             //
         });
     }

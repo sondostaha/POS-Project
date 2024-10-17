@@ -136,7 +136,7 @@
                                             <select class="select2 form-control" name="freelancers[]" data-placeholder="اختر مستقل...">
                                                 <option value="">اختر</option>
                                                 @foreach ($freelancers as $freelancer)
-                                                <option value="{{$freelancer->name}}">{{$freelancer->name}}</option>
+                                                <option value="{{$freelancer->name}}-{{$freelancer->id}}">{{$freelancer->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -170,7 +170,7 @@
                                         <select class="select2 form-control" name="freelancers[]" data-placeholder="اختر ...">
                                             <option value="">اختر</option>
                                             @foreach ($freelancers as $freelancer)
-                                            <option value="{{ $freelancer->name }}">{{ $freelancer->name }}</option>
+                                            <option value="{{$freelancer->name}}-{{$freelancer->id}}">{{ $freelancer->name }}</option>
                                             @endforeach
                                         </select>
                                     `;

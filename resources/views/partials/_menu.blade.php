@@ -26,28 +26,35 @@
 
         {{-- العملاء --}}
 
-        <li class="has-child">
-            <a href="#" class="">
+        <li>
+            <a class="" href="{{ route('all_clients',app()->getLocale()) }}">
                 <span class="nav-icon uil uil-window-section"></span>
                 <span class="menu-text">{{ trans('menu.clients') }}</span>
-                <span class="toggle-icon"></span>
             </a>
-            <ul>
-                {{-- @if (Auth::user()->role == "المدير التنفيذي" || Auth::user()->role == "مسؤول المبيعات"  || Auth::user()->role == "وكيل مبيعات" ) --}}
-                <li class="layout"><a class="{{Route::currentRouteName() ==  'add_clients' ? 'active' : '' }}" href="{{ route('add_clients',app()->getLocale()) }}">{{ trans('menu.add_clients') }}</a></li>
-                {{-- @endif --}}
 
-                <li class="layout"><a class="{{Route::currentRouteName() ==  'all_clients' ? 'active' : '' }}" href="{{ route('all_clients',app()->getLocale()) }}">{{ trans('menu.all_clients') }}</a></li>
-
-                <!--<li class="layout"><a class="{{Route::currentRouteName() ==  'transfers.create' ? 'active' : '' }}" href="{{ route('transfers.create',app()->getLocale()) }}">{{ trans('menu.add_transfers_data') }}</a></li>-->
-                <!--<li class="layout"><a class="{{Route::currentRouteName() ==  'transfers.index' ? 'active' : '' }}" href="{{ route('transfers.index',app()->getLocale()) }}">{{ trans('menu.all_transfers_data') }}</a></li>-->
-
-                {{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'add_freelancer' ? 'active' : '' }}" href="{{ route('add_freelancer',app()->getLocale()) }}">{{ trans('menu.add-freelancer') }}</a></li> --}}
-                {{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'get_freelancer' ? 'active' : '' }}" href="{{route('get_freelancer',app()->getLocale())}}">{{ trans('menu.manage-freelancer') }}</a></li> --}}
-                {{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'request_freelancer' ? 'active' : '' }}" href="{{route('request_freelancer',app()->getLocale())}}">{{ trans('menu.request-freelancer') }}</a></li> --}}
-                {{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'get_request_freelancer' ? 'active' : '' }}" href="{{route('get_request_freelancer',app()->getLocale())}}">{{ trans('menu.all-request-freelancer') }}</a></li> --}}
-            </ul>
         </li>
+{{--        <li class="has-child">--}}
+{{--            <a href="#" class="">--}}
+{{--                <span class="nav-icon uil uil-window-section"></span>--}}
+{{--                <span class="menu-text">{{ trans('menu.clients') }}</span>--}}
+{{--                <span class="toggle-icon"></span>--}}
+{{--            </a>--}}
+{{--            <ul>--}}
+{{--                --}}{{-- @if (Auth::user()->role == "المدير التنفيذي" || Auth::user()->role == "مسؤول المبيعات"  || Auth::user()->role == "وكيل مبيعات" ) --}}
+{{--                <li class="layout"><a class="{{Route::currentRouteName() ==  'add_clients' ? 'active' : '' }}" href="{{ route('add_clients',app()->getLocale()) }}">{{ trans('menu.add_clients') }}</a></li>--}}
+{{--                --}}{{-- @endif --}}
+
+{{--                <li class="layout"><a class="{{Route::currentRouteName() ==  'all_clients' ? 'active' : '' }}" href="{{ route('all_clients',app()->getLocale()) }}">{{ trans('menu.all_clients') }}</a></li>--}}
+
+{{--                <!--<li class="layout"><a class="{{Route::currentRouteName() ==  'transfers.create' ? 'active' : '' }}" href="{{ route('transfers.create',app()->getLocale()) }}">{{ trans('menu.add_transfers_data') }}</a></li>-->--}}
+{{--                <!--<li class="layout"><a class="{{Route::currentRouteName() ==  'transfers.index' ? 'active' : '' }}" href="{{ route('transfers.index',app()->getLocale()) }}">{{ trans('menu.all_transfers_data') }}</a></li>-->--}}
+
+{{--                --}}{{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'add_freelancer' ? 'active' : '' }}" href="{{ route('add_freelancer',app()->getLocale()) }}">{{ trans('menu.add-freelancer') }}</a></li> --}}
+{{--                --}}{{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'get_freelancer' ? 'active' : '' }}" href="{{route('get_freelancer',app()->getLocale())}}">{{ trans('menu.manage-freelancer') }}</a></li> --}}
+{{--                --}}{{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'request_freelancer' ? 'active' : '' }}" href="{{route('request_freelancer',app()->getLocale())}}">{{ trans('menu.request-freelancer') }}</a></li> --}}
+{{--                --}}{{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'get_request_freelancer' ? 'active' : '' }}" href="{{route('get_request_freelancer',app()->getLocale())}}">{{ trans('menu.all-request-freelancer') }}</a></li> --}}
+{{--            </ul>--}}
+{{--        </li>--}}
 
 
         {{-- الطلبات --}}
@@ -59,7 +66,7 @@
                 <span class="toggle-icon"></span>
             </a>
             <ul>
-                <li class="layout"><a class="{{Route::currentRouteName() ==  'add_order' ? 'active' : '' }}" href="{{ route('add_order',app()->getLocale()) }}">{{ trans('menu.add_order') }}</a></li>
+                <!-- <li class="layout"><a class="{{Route::currentRouteName() ==  'add_order' ? 'active' : '' }}" href="{{ route('add_order',app()->getLocale()) }}">{{ trans('menu.add_order') }}</a></li> -->
                 <li class="layout"><a class="{{Route::currentRouteName() ==  'all_orders' ? 'active' : '' }}" href="{{route('all_orders',app()->getLocale())}}">{{ trans('menu.all_orders') }}</a></li>
                 <li class="layout"><a class="{{Route::currentRouteName() ==  'add_transfer' ? 'active' : '' }}" href="{{route('add_transfer',app()->getLocale())}}">{{ trans('menu.add_transfer') }}</a></li>
                 <li class="layout"><a class="{{Route::currentRouteName() ==  'all_transfers' ? 'active' : '' }}" href="{{route('all_transfers',app()->getLocale())}}">{{ trans('menu.all_transfer') }}</a></li>
@@ -95,9 +102,9 @@
                 <span class="toggle-icon"></span>
             </a>
             <ul>
-                <li class="layout"><a class="{{Route::currentRouteName() ==  'add_freelancer' ? 'active' : '' }}" href="{{ route('add_freelancer',app()->getLocale()) }}">{{ trans('menu.add-freelancer') }}</a></li>
+{{--                <li class="layout"><a class="{{Route::currentRouteName() ==  'add_freelancer' ? 'active' : '' }}" href="{{ route('add_freelancer',app()->getLocale()) }}">{{ trans('menu.add-freelancer') }}</a></li>--}}
                 <li class="layout"><a class="{{Route::currentRouteName() ==  'get_freelancer' ? 'active' : '' }}" href="{{route('get_freelancer',app()->getLocale())}}">{{ trans('menu.manage-freelancer') }}</a></li>
-                <li class="layout"><a class="{{Route::currentRouteName() ==  'request_freelancer' ? 'active' : '' }}" href="{{route('request_freelancer',app()->getLocale())}}">{{ trans('menu.request-freelancer') }}</a></li>
+{{--                <li class="layout"><a class="{{Route::currentRouteName() ==  'request_freelancer' ? 'active' : '' }}" href="{{route('request_freelancer',app()->getLocale())}}">{{ trans('menu.request-freelancer') }}</a></li>--}}
                 <li class="layout"><a class="{{Route::currentRouteName() ==  'get_request_freelancer' ? 'active' : '' }}" href="{{route('get_request_freelancer',app()->getLocale())}}">{{ trans('menu.all-request-freelancer') }}</a></li>
                 <li class="layout"><a class="{{Route::currentRouteName() ==  'add_rating' ? 'active' : '' }}" href="{{route('add_rating',app()->getLocale())}}">{{ trans('menu.rate_freelancer') }}</a></li>
             </ul>
@@ -190,27 +197,14 @@
         {{-- المستخدمين --}}
         {{-- @if (Auth::user()->role == "المدير التنفيذي" || Auth::user()->role == "مدير المبيعات" || Auth::user()->role == "مدير الموارد البشرية" || Auth::user()->role == "مسؤول المبيعات") --}}
 
-        <li class="has-child">
-            <a href="#" class="">
+        <li>
+            <a class="" href="{{ route('add_user',app()->getLocale()) }}">
                 <span class="nav-icon uil uil-window-section"></span>
                 <span class="menu-text">{{ trans('menu.users') }}</span>
-                <span class="toggle-icon"></span>
             </a>
-            <ul>
-                {{-- @if (Auth::user()->role == "المدير التنفيذي" || Auth::user()->role == "مدير المبيعات" || Auth::user()->role == "مدير الموارد البشرية" || Auth::user()->role == "مسؤول المبيعات") --}}
-                <li class="layout"><a class="{{Route::currentRouteName() ==  'add_user' ? 'active' : '' }}" href="{{ route('add_user',app()->getLocale()) }}">{{ trans('menu.add_user') }}</a></li>
-                {{-- @endif --}}
 
-                {{-- @if (Auth::user()->role == "المدير التنفيذي" || Auth::user()->role == "مدير المبيعات" || Auth::user()->role == "مدير الموارد البشرية" || Auth::user()->role == "مسؤول المبيعات") --}}
-                <li class="layout"><a class="{{Route::currentRouteName() ==  'get_user' ? 'active' : '' }}" href="{{ route('get_user',app()->getLocale()) }}">{{ trans('menu.all_users') }}</a></li>
-                {{-- @endif --}}
-
-                {{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'add_freelancer' ? 'active' : '' }}" href="{{ route('add_freelancer',app()->getLocale()) }}">{{ trans('menu.add-freelancer') }}</a></li> --}}
-                {{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'get_freelancer' ? 'active' : '' }}" href="{{route('get_freelancer',app()->getLocale())}}">{{ trans('menu.manage-freelancer') }}</a></li> --}}
-                {{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'request_freelancer' ? 'active' : '' }}" href="{{route('request_freelancer',app()->getLocale())}}">{{ trans('menu.request-freelancer') }}</a></li> --}}
-                {{-- <li class="layout"><a class="{{Route::currentRouteName() ==  'get_request_freelancer' ? 'active' : '' }}" href="{{route('get_request_freelancer',app()->getLocale())}}">{{ trans('menu.all-request-freelancer') }}</a></li> --}}
-            </ul>
         </li>
+
 
         {{-- @endif --}}
 

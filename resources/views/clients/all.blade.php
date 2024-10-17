@@ -71,8 +71,8 @@
                                       <th class="wd-10p border-bottom-0 " >الجوال</th>
                                       <th class="wd-10p border-bottom-0 " >الأيميل</th>
                                       <th class="wd-10p border-bottom-0 " >المصدر</th>
-                                      <th class="wd-10p border-bottom-0 " >الماهية</th>
-                                      <th class="wd-10p border-bottom-0 " >الأهمية</th>
+                                      <th class="wd-10p border-bottom-0 " >الماةية</th>
+                                      <th class="wd-10p border-bottom-0 " >الأةمية</th>
                                       <th class="wd-10p border-bottom-0 " >مجال الطلب</th>
                                       <th class="wd-10p border-bottom-0 " >الملاحظات</th>
                                       <th class="wd-10p border-bottom-0 " >العمليات</th>
@@ -226,12 +226,12 @@ $("document").ready(function () {
 <script>
 function confirmDelete(url) {
     Swal.fire({
-        title: 'هل انت متأكد؟',
+        title: 'ةل انت متأكد؟',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'نعم ، احذفه',
+        confirmButtonText: 'نعم ، احذفة',
         cancelButtonText: 'لا',
 
     }).then((result) => {

@@ -37,7 +37,7 @@ var myChart = new Chart(ctx, {
             yAxes: [{
                 ticks: {
                     beginAtZero: true, // Ensures the y-axis starts at zero
-                    scaleLabel: 'إجمالي العمولة المكتسبة (جنيه مصري)' // Y-axis label in Arabic
+                    scaleLabel: 'إجمالي العمولة المكتسبة (جنية مصري)' // Y-axis label in Arabic
                 }
             }]
         }

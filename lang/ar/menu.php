@@ -99,7 +99,7 @@
         'bookmark-menu-title'=>'الإشارات المرجعية',
 
         'customer-crud-menu-title'=>'الزبون',
-        'customer-view-all'=>'مشاهدة الكل',
+        'customer-view-all'=>'مشاةدة الكل',
         'customer-add-new'=>'اضف جديد',
         'customer-edit'=>'تحرير الزبون',
 
@@ -112,7 +112,7 @@
         'ui-card' => 'البطاقات',
         'ui-carousel' => 'دائري',
         'ui-checkbox' => 'خانة اختيار',
-        'ui-collapse' => 'انهيار',
+        'ui-collapse' => 'انةيار',
         'ui-comment' => 'تعليقات',
         'ui-dashboard-base' => 'قاعدة لوحة المعلومات',
         'ui-date-picker' => 'منتقي التاريخ',
@@ -126,7 +126,7 @@
         'ui-menu' => 'قائمة',
         'ui-message' => 'رسالة',
         'ui-modal' => 'الأطال',
-        'ui-notification' => 'تنبيه',
+        'ui-notification' => 'تنبية',
         'ui-page-header' => 'رؤوس الصفحات',
         'ui-pagination' => 'الصفحات',
         'ui-progress' => 'تقدم',
@@ -134,12 +134,12 @@
         'ui-rate' => 'معدل',
         'ui-result' => 'نتيجة',
         'ui-select' => 'يختار',
-        'ui-skeleton' => 'هيكل عظمي',
+        'ui-skeleton' => 'ةيكل عظمي',
         'ui-slider' => 'المنزلق',
         'ui-spinner' => 'سبينر',
         'ui-statistic' => 'الإحصائية',
         'ui-step' => 'خطوات',
-        'ui-switch' => 'مفتاح كهربائي',
+        'ui-switch' => 'مفتاح كةربائي',
         'ui-tab' => 'نوافذ التبويب',
         'ui-tag' => 'كذا',
         'ui-timeline' => 'الجدول الزمني',
@@ -254,10 +254,10 @@
         'fields' => 'مجالات العمل',
 
 //فريق العمل
-    'work_team' => 'الاعدادات الماليه',
-    'management_team' => 'فريق الاداره',
-    'add_management_team' => 'اضافه فريق الاداره',
-    'add_sales_team' => 'اضافه فريق المبيعات',
+    'work_team' => 'الاعدادات المالية',
+    'management_team' => 'فريق الادارة',
+    'add_management_team' => 'اضافة فريق الادارة',
+    'add_sales_team' => 'اضافة فريق المبيعات',
 
     'sales_team' => 'فريق المبيعات',
         // 'home'=>'لرئيسية'
@@ -265,7 +265,7 @@
         'upload' => 'رفع',
         'Custom_File_Input' => 'رفع ملف',
         'request-freelancer' => 'طلب مستقل',
-        'all-request-freelancer' => 'جميع طلبات المستقلين',
+        'all-request-freelancer' => ' طلبات المستقلين',
         'add' => 'اضافة',
         'orders' => 'الطلبات',
         'add_rating' => 'اضافة تقييم',
@@ -317,7 +317,7 @@
         'roles_and_permissions' => 'الصلاحيات و الرتب',
         'edit_role' => 'تعديل رتبة',
         'add_permission_to_roles' => 'اضافة صلاحيات للرتبة',
-        'edit_permission_to_roles' => 'تعديل صلاحيات الرتبه',
+        'edit_permission_to_roles' => 'تعديل صلاحيات الرتبة',
         'all_roles_permissions' => 'جميع صلاحيات الرتب',
 
         //الطلبات
@@ -371,7 +371,7 @@
         'add_setting' => 'اضافة اعدادات الجرد',
         'edit_setting' => 'تعديل اعدادات الجرد',
         'all_settings' => 'الاعدادات',
-        'add_budgets' => 'اضافه ميزانيه',
+        'add_budgets' => 'اضافة ميزانية',
         'net.profit.report' => 'التقرير النهائي للشركة',
         'all_inventories' => 'جميع الجرود',
         'make_inventory' => 'عمل جرد',
@@ -381,7 +381,7 @@
         'view_educational' => 'عرض',
 
 
-        'add_settings' => 'اضافه ميزانيه',
+        'add_settings' => 'اضافة ميزانية',
         'inventory_updates' => 'تحديثات الجرد',
 
 

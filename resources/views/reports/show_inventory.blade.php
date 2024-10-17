@@ -35,14 +35,55 @@
         <div class="card shadow">
             <div class="card-body">
                 <ul class="list-group list-group-flush">
-                    @foreach($reportData as $key => $value)
-                        @if($key != 'إجمالي الإيرادات' && $key != 'صافي الربح')
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>{{ $key }}</span>
-                                <span class="badge bg-primary rounded-pill">{{ number_format($value, 2) }} $</span>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                               <a href="{{route('freelacers.details',[ app()->getLocale(),$reportData['id']])}}"><span>مستحقات المستقلين</span></a>
+                                <span class="badge bg-primary rounded-pill">{{ number_format($reportData['مستحقات المستقلين'], 2) }} $</span>
                             </li>
-                        @endif
-                    @endforeach
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @if($reportData['عمولة المسوقين بالعمولة'] == 0)
+                                    <span>عمولة المسوقين بالعمولة </span></a>
+                                    <span class="badge bg-primary rounded-pill">{{ number_format($reportData['عمولة المسوقين بالعمولة'], 2) }} $</span>
+                                @else                                
+                                    <a href="{{route('marketing.details',[ app()->getLocale(),$reportData['id']])}}"><span>عمولة المسوقين بالعمولة </span></a>
+                                        <span class="badge bg-primary rounded-pill">{{ number_format($reportData['عمولة المسوقين بالعمولة'], 2) }} $</span>
+                                @endif    
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{{route('salesAgent.details',[ app()->getLocale(),$reportData['id']])}}"><span> عمولة وكيل المبيعات</span></a>
+                                <span class="badge bg-primary rounded-pill">{{ number_format($reportData['عمولة وكيل المبيعات'], 2) }} $</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{{route('salesOfficer.details',[ app()->getLocale(),$reportData['id']])}}"><span> عمولة مسؤول المبيعات</span></a>
+                                <span class="badge bg-primary rounded-pill">{{ number_format($reportData['عمولة مسؤول المبيعات'], 2) }} $</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{{route('setting.details',[ app()->getLocale(),$reportData['id']])}}"><span> اجمالي الميزانيات</span></a>
+                                <span class="badge bg-primary rounded-pill">{{ number_format($reportData['اجمالي الميزانيات'], 2) }} $</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>مستحقات مدير المبيعات</span>
+                                <span class="badge bg-primary rounded-pill">{{ number_format($reportData['مستحقات مدير المبيعات'], 2) }} $</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>مستحقات المدير التقني</span>
+                                <span class="badge bg-primary rounded-pill">{{ number_format($reportData['مستحقات المدير التقني'], 2) }} $</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span> مستحقات المدير المالي</span>
+                                <span class="badge bg-primary rounded-pill">{{ number_format($reportData['مستحقات المدير المالي'], 2) }} $</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>مستحقات المدير التنفيذي</span>
+                                <span class="badge bg-primary rounded-pill">{{ number_format($reportData['مستحقات المدير التنفيذي'], 2) }} $</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>مستحقات مدير التسويق</span>
+                                <span class="badge bg-primary rounded-pill">{{ number_format($reportData['مستحقات مدير التسويق'], 2) }} $</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>مستحقات مدير الموارد البشرية</span>
+                                <span class="badge bg-primary rounded-pill">{{ number_format($reportData['مستحقات مدير الموارد البشرية'], 2) }} $</span>
+                            </li>
                 </ul>
             </div>
         </div>
@@ -143,7 +184,7 @@ new Chart(document.getElementById('revenueByFieldChart'), {
     options: {
         responsive: true,
         maintainAspectRatio: true,
-        aspectRatio: 2, // هذا سيجعل الرسم البياني أصغر
+        aspectRatio: 2, // ةذا سيجعل الرسم البياني أصغر
         plugins: {
             legend: {
                 position: 'top',

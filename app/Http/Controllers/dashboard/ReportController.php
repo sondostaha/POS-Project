@@ -174,7 +174,7 @@ public function deleteInventoryUpdate($language ,$id)
                 die('HR Res not found');
             }
 
-            // عاوز اجيب عدد المستقلين لكل مجال اللي ضافهم مسؤولي الموارد البشرية
+            // عاوز اجيب عدد المستقلين لكل مجال اللي ضافةم مسؤولي الموارد البشرية
 
             $freelancersCountByFieldRes = MainField::select('main_fields.title', \DB::raw('COUNT(freelancers.id) as freelancer_count'))
                 ->leftJoin('freelancers', 'main_fields.id', '=', 'freelancers.main_field_id')
@@ -524,7 +524,7 @@ public function affiliateMarketers()
     $data = array_column($commissionData, 'commission');
 
     $title = "المسوقون بالعمولة";
-    $description = "تقرير مفصل عن المسوقين بالعمولة وأرباحهم";
+    $description = "تقرير مفصل عن المسوقين بالعمولة وأرباحةم";
 
     return view('reports.affiliate_marketers', compact('labels', 'data', 'title', 'description', 'commissionData', 'totalCommissionSum'));
 }
@@ -1152,7 +1152,8 @@ public function store_setting(Request $request){
 }
 
 public function all_settings(){
-    $setting = Setting::get();
+    $user = Auth::user();
+    $setting = Setting::where('new_franchise_id',$user->new_franchise_id)->get();
     if($setting->first() !== null)
     {
         $title = "all settings";

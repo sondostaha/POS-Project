@@ -21,8 +21,15 @@ class ManagementTeamController extends Controller
         $title = "Manage Team";
         $description = "Manage Team";
         $user =  Auth::user();
+//        dd($user->new_franchise_id);
         $ManagementTeams = ManagementTeam::where('new_franchise_id',$user->new_franchise_id)->first();
-        return view('managementTeam.create', compact('description','title','ManagementTeams'));
+        if(empty($ManagementTeams)){
+            return view('managementTeam.create', compact('description','title','ManagementTeams'));
+
+        }else {
+            return view('managementTeam.edit', compact('description','title','ManagementTeams'));
+
+        }
     }
     public function store(Request $request)
     {
@@ -46,23 +53,16 @@ class ManagementTeamController extends Controller
         $data['CEO'] =intval( str_replace('%','',$data['CEO']));
         $data['hr_manager'] =intval( str_replace('%','',$data['hr_manager']));
         $data['marketing_manager'] =intval( str_replace('%','',$data['marketing_manager']));
-
         $currentUser = Auth::user();
         if ($currentUser && $currentUser->new_franchise_id) {
             $data['new_franchise_id'] = $currentUser->new_franchise_id;
         }
-        $managementTeam = ManagementTeam::where('new_franchise_id',$currentUser->new_franchise_id)->first();
-        if(!empty($managementTeam))
-        {
-            $this->update($request, $managementTeam->id);
-        }
-        else {
 
 
-            ManagementTeam::create($data);
-        }
+         ManagementTeam::create($data);
+
         $notification  = [
-            'massage' => 'تم حفظ فريق الاداره بنجاح',
+            'massage' => 'تم حفظ فريق الادارة بنجاح',
             'status' => 'success'
         ];
         return redirect()->route('managementTeam.add', app()->getLocale())->with($notification);
@@ -74,7 +74,7 @@ class ManagementTeamController extends Controller
         $managementTeam = ManagementTeam::findOrFail($id);
         return view('managementTeam.edit', compact('managementTeam'));
     }
-    public function update(Request $request, $id)
+    public function update(Request $request,$language, $id)
     {
         $data = $request->validate([
             'sales_manager' => 'required',
@@ -105,13 +105,13 @@ class ManagementTeamController extends Controller
         $management_team->update($data);
         if($management_team){
             $notification = [
-                'massage' => 'تم تعديل فريق الاداره بنجاح',
+                'massage' => 'تم تعديل فريق الادارة بنجاح',
                 'status' => 'success'
             ];
             return redirect()->route('managementTeam.add', app()->getLocale())->with($notification);
         }
         $notification = [
-            'massage' => 'حدث خطاء برجاء المحاوله ثانيا',
+            'massage' => 'حدث خطاء برجاء المحاولة ثانيا',
             'status' => 'error'
         ];
         return redirect()->route('managementTeam.add', app()->getLocale())->with($notification);

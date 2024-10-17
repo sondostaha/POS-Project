@@ -57,11 +57,11 @@
                                             <span class="userDatatable-title">الطلب</span>
                                         </th>
                                         <th>
-                                            <span class="userDatatable-title"> قيمه الطلب</span>
+                                            <span class="userDatatable-title"> قيمة الطلب</span>
                                         </th>
 
                                         <th>
-                                            <span class="userDatatable-title"> حاله الطلب</span>
+                                            <span class="userDatatable-title"> حالة الطلب</span>
                                         </th>
 
                                         <th>

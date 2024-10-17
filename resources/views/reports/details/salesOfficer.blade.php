@@ -45,107 +45,72 @@
                         <div class="table-responsive">
                             <div class="adv-table-table__header">
                                 <h4>{{ trans('menu.orders') }}</h4>
-                                <div class="adv-table-table__button">
-                                    <a href="{{route('request_freelancer' , app()->getLocale())}}"  class="btn btn-primary fs-6 fw-bold text-center" >
-                                {{trans('menu.add')}}
-                                    </a>
-                                </div>
+                                
                             </div>
                             <div id="filter-form-container"></div>
                             <table class="table mb-0 table-borderless adv-table" data-sorting="true" data-filter-container="#filter-form-container" data-paging-current="1" data-paging-position="right" data-paging-size="10">
                                 <thead>
                                     <tr class="userDatatable-header">
                                         <th>
-                                            <span class="userDatatable-title">id</span>
+                                            <span class="userDatatable-title">رقم الطلب</span>
                                         </th>
                                         <th>
-                                            <span class="userDatatable-title">المجال الرئيسي</span>
+                                            <span class="userDatatable-title">  مسؤول المبيعات</span>
                                         </th>
                                         <th>
-                                            <span class="userDatatable-title">المجال الفرعي</span>
+                                            <span class="userDatatable-title"> نسبة مسؤول المبيعات </span>
                                         </th>
                                         <th>
-                                            <span class="userDatatable-title">الوصف</span>
+                                            <span class="userDatatable-title">مرتب مسؤول المبيعات</span>
                                         </th>
                                         <th>
-                                            <span class="userDatatable-title">حالة المستقل</span>
-                                        </th>
-                                        <th>
-                                            <span class="userDatatable-title">الحالة</span>
-                                        </th>
-
-                                        <th>
-                                            <span class="userDatatable-title float-right">العمليات</span>
+                                            <span class="userDatatable-title">عموله مسؤول المبيعات</span>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($requests_freelancers as $request_freelancer )
-
-
+                                    @foreach ($orders as $order )                                    
                                     <tr>
                                         <td>
-                                            <div class="userDatatable-content">{{$request_freelancer->id}}</div>
+                                            <div class="userDatatable-content">{{$order->id}}</div>
                                         </td>
+                                        
                                         <td>
-                                            <div class="d-flex">
-                                                <div class="userDatatable-inline-title">
-                                                    <a href="#" class="text-dark fw-500">
-                                                        <h6>{{$request_freelancer->main_field->title}}</h6>
-                                                    </a>
+                                                <div class="d-flex">
+                                                    <div class="userDatatable-inline-title">
+                                                        <a href="#" class="text-dark fw-500">
+                                                        <h6>{{$order->salesOfficer->name}}</h6>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="userDatatable-content">
-                                                {{$request_freelancer->sub_field->title}}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="userDatatable-content">
-                                                {{$request_freelancer->desc}}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="userDatatable-content">
-                                                {{$request_freelancer->freelancer_status}}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="userDatatable-content">
-                                                <span class="bg-opacity-success  color-success rounded-pill userDatatable-content-status active">{{$request_freelancer->status}}</span>
-                                            </div>
-                                        </td>
-
-
-
+                                            </td>
                                             <td>
-                                            <ul class="orderDatatable_actions mb-0 d-flex ">
-                                                @if($request_freelancer->freelancer_status != 'موجود')
-                                                <li>
-                                                    <a href="{{route('freelance_status' , [app()->getLocale() , $request_freelancer->id])}}" title="تغيير حالة المستقل">
-                                                        <img src="{{ asset('assets/img/svg/status.jpg') }}" alt="test" class="jpg">
-                                                    </a>
-                                                </li>
-                                                @endif
-                                                <li>
-                                                    <a href="{{route('edit_request_freelancer', [app()->getLocale(), $request_freelancer->id])}}" class="edit">
-                                                        <i class="uil uil-edit"></i></a>
-                                                </li>
-
-
-<li>
-    <a href="javascript:void(0);" class="remove" onclick="confirmDelete('{{route('delete_request_freelancer', [app()->getLocale(), $request_freelancer->id])}}')">
-        <img src="{{ asset('assets/img/svg/trash-2.svg') }}" alt="trash-2" class="svg">
-    </a>
-</li>
-                                            </ul>
-                                        </td>
+                                                <div class="d-flex">
+                                                    <div class="userDatatable-inline-title">
+                                                        <a href="#" class="text-dark fw-500">
+                                                        <h6>{{$sales_team->sales_officer}}%</h6>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="userDatatable-inline-title">
+                                                        <a href="#" class="text-dark fw-500">
+                                                        <h6>{{$sales_team->sales_officer_salary}}</h6>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="userDatatable-content">
+                                                <h6>{{number_format(($order->finalValue * ($sales_team->sales_officer/100)) + $sales_team->sales_officer_salary,2)}}</h6>
+                                                </div>
+                                            </td>
+                                       
                                     </tr>
 
                                     @endforeach
-
-
 
                                 </tbody>
                             </table>

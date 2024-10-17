@@ -70,9 +70,9 @@
                                 <div class="form-group select-px-15 text-end">
                                     <select class="form-control px-15 text-end" id="freelancer_status" name="freelancer_status" required>
 
-                                        <option class="text-end" selected disabled> حاله المستقل </option>
-                                        <option value="طلب">طلب</option>
-                                        <option value="يوجد">يوجد</option>
+                                        <option class="text-end" selected disabled> حالة المستقل </option>
+                                        <option value="مطلوب">مطلوب</option>
+                                        <option value="موجود">موجود</option>
 
                                     </select>
                                 </div>

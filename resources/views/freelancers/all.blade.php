@@ -139,120 +139,82 @@
 
                             {{-- <div id="filter-form-container"></div> --}}
 
-                            <div class="table-responsive">
+                            <button id="sortFreelancersBtn" class="btn btn-primary">ترتيب حسب التقييم</button>
 
-                                <table class="table text-md-nowrap mt-2" id="example1">
-
-                                    <thead>
-                                    <tr>
-                                        <th class="wd-15p border-bottom-0 " >id</th>
-                                        <th class="wd-15p border-bottom-0 " >الأسم</th>
-                                        {{-- <th class="wd-15p border-bottom-0 " >البريد الإلكتروني</th> --}}
-                                        <th class="wd-10p border-bottom-0 " >مجال العمل الرائسي</th>
-                                        <th class="wd-15p border-bottom-0 " >مجال العمل الفرعي</th>
-                                        <th class="wd-15p border-bottom-0 " >المنتجات التي يقدمها</th>
-                                        <th class="wd-15p border-bottom-0 " >اللغه</th>
-
-                                        {{-- <th class="wd-10p border-bottom-0 " >الكورس</th>
-                                        <th class="wd-10p border-bottom-0 " >اللغة</th> --}}
-                                        {{-- <th class="wd-10p border-bottom-0 " >الشهادة العلمية ومجال العمل الأساسي</th> --}}
-                                        {{-- <th class="wd-10p border-bottom-0 " >مجالات العمل الرئيسية عن بعد</th> --}}
-                                        {{-- <th class="wd-10p border-bottom-0 " >المنتجات التي يمكنك تقديمها</th> --}}
-                                        {{-- <th class="wd-10p border-bottom-0 " >اللغات</th> --}}
-                                        {{-- <th class="wd-10p border-bottom-0 " >رقم الواتساب او الفيس بوك</th> --}}
-                                        {{-- <th class="wd-10p border-bottom-0 " >رقم فودافون كاش</th> --}}
-                                        {{-- <th class="wd-10p border-bottom-0 " >نماذج الأعمال</th> --}}
-{{--                                        <th class="wd-10p border-bottom-0 " >التقييم</th>--}}
-                                        <th class="wd-10p border-bottom-0 " >الأجازات</th>
-                                        <th class="wd-10p border-bottom-0 " >العمليات</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ( $freelancers as $freelancer )
-                                        <tr>
-                                            <td >{{$freelancer->id}}</td>
-                                            <td >{{$freelancer->name}}</td>
-                                            <td >{{$freelancer->main_field->title}}</td>
-                                            <td >{{$freelancer->sub_field->title}}</td>
-                                            <td >{{$freelancer->products}}</td>
-                                            <td >{{$freelancer->languages}}</td>
-
-                                            {{-- <td >{{$freelancer->certificate}}</td> --}}
-                                            {{-- <td >{{$freelancer->field_type}}</td> --}}
-                                            {{-- <td >{{$freelancer->products}}</td> --}}
-                                            {{-- <td >{{$freelancer->languages}}</td> --}}
-                                            {{-- <td >{{$freelancer->wphone}}</td> --}}
-                                            {{-- <td >{{$freelancer->vphone}}</td> --}}
-                                            {{-- <td >{{$freelancer->cv}}</td> --}}
-
-                                            {{--                                      @php--}}
-                                            {{--                                        $rate = DB::table('ratings')->select('rating')->where('freelancer_id' , $freelancer->id)->value('rating');--}}
-                                            {{--                                      @endphp--}}
-
-                                            {{--                                      <td>--}}
-                                            {{--                                        @if ($rate)--}}
-
-                                            {{--                                        {{ $rate }}--}}
-
-                                            {{--                                        @else--}}
-
-                                            {{--                                        0--}}
-
-                                            {{--                                        @endif--}}
-                                            {{--                                      </td>--}}
-
-
-                                            <td>
-                                                @if (App\Models\Holiday::where('freelancer_id' , $freelancer->id )->exists())
-
-                                                    <span class="bg-opacity-danger  color-danger rounded-pill userDatatable-content-status active">اجازة</span>
-                                                @else
-                                                    <span>لا يوجد</span>
-                                                @endif
-
-                                            </td>
-
-
+<div class="table-responsive">
+    <table class="table text-md-nowrap mt-2" id="freelancersTable">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>الاسم</th>
+                <th>مجال العمل الرائيسي</th>
+                <th>مجال العمل الفرعي</th>
+                <th>المنتجات او الخدمات</th>
+                <th>اللغة</th>
+                <th>الأجازات</th>
+                <th>الطلبات الجارية</th>
+                <th>التقييم</th>
+                <th>العمليات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ( $freelancers as $freelancer )
+                <tr>
+                    <td >{{$freelancer->id}}</td>
+                    <td >{{$freelancer->name}}</td>
+                    <td >{{$freelancer->main_field->title}}</td>
+                    <td >{{$freelancer->sub_field->title}}</td>
+                    <td >{{$freelancer->products}}</td>
+                    <td >{{$freelancer->languages}}</td>
+                    <td>
+                        @if (App\Models\Holiday::where('freelancer_id' , $freelancer->id )->exists())
+                            <span class="bg-opacity-danger color-danger rounded-pill userDatatable-content-status active">اجازة</span>
+                        @else
+                            <span>لا يوجد</span>
+                        @endif
+                    </td>
+                    <td>{{$freelancer->freelancerOrder->count()}}</td>
+                    @if($freelancer->ratings->sum('rating') != 0 || $freelancer->ratings->count() != 0)
+                    <td>{{$freelancer->ratings->sum('rating') /$freelancer->ratings->count()}}</td>
+                    @else
+                    <td> 0 </td>
+                    @endif
+                    <td>
+                        <ul class="orderDatatable_actions mb-0 d-flex">
+                            <li>
+                                <a href="{{ route('show_freelancer', [app()->getLocale(), $freelancer->id]) }}" title="عرض" class="view">
+                                    <i class="uil uil-eye"></i></a>
+                            </li>
+                            <li>
+                                <a href="{{ route('holiday', [app()->getLocale(), $freelancer->id]) }}" title="اجازة" class="view">
+                                    <i class="fa-solid fa-house"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('return_holiday', [app()->getLocale(), $freelancer->id]) }}" title="عودة من الأجازة" class="view">
+                                    <i class="fa-solid fa-rotate-left"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('edit_freelancer', [app()->getLocale(), $freelancer->id])}}" title="تعديل" class="edit">
+                                    <i class="uil uil-edit"></i></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class="remove" onclick="confirmDelete('{{route('delete_freelancer', [ app()->getLocale(), $freelancer->id])}}')">
+                                    <img src="{{ asset('assets/img/svg/trash-2.svg') }}" alt="trash-2" class="svg">
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
 
 
-                                            <td>
-                                                <ul class="orderDatatable_actions mb-0 d-flex ">
-                                                    <li>
-                                                        <a href="{{ route('show_freelancer' , [app()->getLocale(), $freelancer->id]) }}" title="عرض" class="view">
-                                                            <i class="uil uil-eye"></i></a>
 
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ route('holiday' , [app()->getLocale(), $freelancer->id]) }}" title="اجازة" class="view">
-                                                            <i class="fa-solid fa-house"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ route('return_holiday' , [app()->getLocale(), $freelancer->id]) }}" title="عودة من الأجازة" class="view">
-                                                            <i class="fa-solid fa-rotate-left"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{route('edit_freelancer', [app()->getLocale(), $freelancer->id])}}" title="تعديل" class="edit">
-                                                            <i class="uil uil-edit"></i></a>
-                                                    </li>
-
-
-                                                    <li>
-                                                        <a href="javascript:void(0);" class="remove" onclick="confirmDelete('{{route('delete_freelancer', [ app()->getLocale() , $freelancer->id])}}')">
-                                                            <img src="{{ asset('assets/img/svg/trash-2.svg') }}" alt="trash-2" class="svg">
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-
-                                        </tr>
-                                    @endforeach
-
-                                    </tbody>
-                                </table>
-                              </div>
                         </div>
                     </div>
                 </div>
@@ -342,12 +304,12 @@ $("document").ready(function () {
 <script>
 function confirmDelete(url) {
     Swal.fire({
-        title: 'هل انت متأكد؟',
+        title: 'ةل انت متأكد؟',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'نعم ، احذفه',
+        confirmButtonText: 'نعم ، احذفة',
         cancelButtonText: 'لا',
 
     }).then((result) => {
@@ -357,6 +319,78 @@ function confirmDelete(url) {
     })
 }
 </script>
+
+
+<script>
+    document.getElementById('sortFreelancersBtn').addEventListener('click', function() {
+    // طلب Ajax لترتيب المستقلين بناءً على التقييم
+    $.ajax({
+        url: '{{ route('sort_freelancers' , app()->getLocale()) }}',
+        type: 'GET',
+        success: function(response) {
+            let tableBody = $('#freelancersTable tbody');
+            tableBody.empty(); // تفريغ الجدول قبل إعادة ملء البيانات
+
+            // إعادة بناء الصفوف بناءً على البيانات المرتبة
+            response.forEach(function(freelancer) {
+                let row = `
+                    <tr>
+                        <td>${freelancer.id}</td>
+                        <td>${freelancer.name}</td>
+                        <td>${freelancer.main_field ? freelancer.main_field.title : ''}</td>
+                        <td>${freelancer.sub_field ? freelancer.sub_field.title : ''}</td>
+                        <td>${freelancer.products}</td>
+                        <td>${freelancer.languages}</td>
+                        <td>${freelancer.holiday ? 'اجازة' : 'لا يوجد'}</td>
+                        <td>{{$freelancer->freelancerOrder->count()}}</td>
+
+                        <td>
+                            <ul class="orderDatatable_actions mb-0 d-flex">
+                                <li>
+                                    <a href="/freelancer/${freelancer.id}" title="عرض" class="view">
+                                        <i class="uil uil-eye"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/holiday/${freelancer.id}" title="اجازة" class="view">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/return_holiday/${freelancer.id}" title="عودة من الأجازة" class="view">
+                                        <i class="fa-solid fa-rotate-left"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/edit_freelancer/${freelancer.id}" title="تعديل" class="edit">
+                                        <i class="uil uil-edit"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="remove" onclick="confirmDelete('/delete_freelancer/${freelancer.id}')">
+                                        <img src="{{ asset('assets/img/svg/trash-2.svg') }}" alt="trash-2" class="svg">
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                `;
+                tableBody.append(row);
+            });
+        },
+        error: function(xhr) {
+            console.error(xhr);
+        }
+    });
+});
+
+</script>
+
+
+
+
+
+
 
 
 

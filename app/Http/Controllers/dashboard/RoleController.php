@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
-    
-    
+
+
     public function index()
     {
         $roles = Role::all();
@@ -38,10 +38,10 @@ class RoleController extends Controller
 
         // جلب معرّفات الصلاحيات المختارة باستخدام أسمائها
         $permissionIds = Permission::whereIn('name', $request->input('permissions'))->pluck('id')->toArray();
-        
+
         // ربط الصلاحيات بالدور
         $role->syncPermissions($permissionIds);
-        
+
             $notification = [
         'message' => 'تم اضافة الرتبة بنجاح',
         'alert-type' => 'success'
@@ -49,14 +49,14 @@ class RoleController extends Controller
 
         return redirect()->route('roles.all' , app()->getLocale())->with($notification);
     }
-    
+
     public function all(){
         $title = "all roles";
         $description = "all roles";
         $roles = Role::all();
         return view('roles.all', compact('roles' , 'title' , 'description'));
     }
-    
+
     public function edit($language, $id)
 {
             $title = "edit roles";
@@ -105,8 +105,8 @@ public function destroy($language, $id)
     return redirect()->route('roles.all', app()->getLocale())->with($notification);
 }
 
-    
-    
+
+
 
     // public function edit(Role $role)
     // {
@@ -127,14 +127,14 @@ public function destroy($language, $id)
 
     //     return redirect()->route('roles.index');
     // }
-    
-    
+
+
 
     // public function add(){
     //     $title = "Add Permission";
     //     $description = "Add Permission";
     //     return view('permissions.add_permission' ,compact("title" , "description"));
-        
+
     // }
 
 
@@ -187,7 +187,7 @@ public function destroy($language, $id)
 
 
     // }
-    
+
 
     // public function delete($language  , $id){
 
@@ -287,7 +287,7 @@ public function destroy($language, $id)
     // }
 
     // public function store_permission_to_role(Request $request){
-        
+
     //     $data = [];
     //     $permissions = $request->permission;
 
@@ -306,7 +306,7 @@ public function destroy($language, $id)
     //     );
 
     //     return redirect()->route('all_roles_permissions' ,app()->getLocale() )->with($notification);
-        
+
     // }
 
 
@@ -347,7 +347,7 @@ public function destroy($language, $id)
     //     return redirect()->route('all_roles_permissions' , app()->getLocale())->with($notification);
 
     // }
-    
+
     // public function delete_permission_in_role( $language , $id){
 
     //     $role = Role::findOrFail($id);
@@ -362,7 +362,7 @@ public function destroy($language, $id)
     //     );
 
     //     return redirect()->route('all_roles_permissions' , app()->getLocale())->with($notification);
-        
+
     // }
 
 

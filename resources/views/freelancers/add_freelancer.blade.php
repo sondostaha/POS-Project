@@ -48,7 +48,7 @@
                             </div>
                             <div class="col-md-4 mb-25">
                                 <div class="form-group select-px-15 text-end">
-            
+
                                     <select class="form-control px-15 text-end" id="countryOption" name="main_field_id" required>
 <option class="text-end" selected disabled>مجال العمل الأساسي</option>
                                         @foreach ($mainfields as $field )
@@ -60,10 +60,10 @@
 
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-4 mb-25">
                                 <div class="form-group select-px-15 text-end">
-            
+
                                     <select class="form-control px-15 text-end" id="countryOption0909" name="sub_field_id" required>
 <option class="text-end" selected disabled>مجال العمل الفرعي</option>
                                         @foreach ($subfields as $field )
@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 mb-25">
-                                <input type="text" name="products" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="المنتجات التي يمكنك تقديمها" value="{{old('products')}}">
+                                <input type="text" name="products" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="المنتجات" value="{{old('products')}}">
                             </div>
                             <div class="col-md-6 mb-25">
                                 <input type="text" name="languages" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="اللغات" value="{{old('languages')}}">

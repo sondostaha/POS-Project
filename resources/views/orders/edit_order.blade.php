@@ -78,15 +78,14 @@
 {{--                                <input type="text" name="fvalue" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="للمستقل" value="{{ $order->fvalue }}">--}}
 {{--                            </div>--}}
 
-                            <p class="text-danger fw-600">حاله الطلب:</p>
+                            <p class="text-danger fw-600">حالة الطلب:</p>
                             <div class="col-md-6 mb-25">
                                 <div class="dm-select">
                                     <select name="status" class="form-control select2" data-placeholder="..اختر بيانات التحويل">
                                         <option value=""></option>
                                         <option value="جاري" {{ $order->status == 'جاري' ? 'selected' : '' }}>جاري</option>
                                         <option value="مسلم" {{ $order->status == 'مسلم' ? 'selected' : '' }}>مسلم</option>
-                                        <option value="قيدالمراجعه او التعديل" {{ $order->status == 'قيدالمراجعه او التعديل' ? 'selected' : '' }}>قيدالمراجعه او التعديل</option>
-                                        <option value="افتراضي" {{ $order->status == 'افتراضي' ? 'selected' : '' }}>افتراضي</option>
+                                        <option value="قيد المراجعة او التعديل" {{ $order->status == 'قيد المراجعة او التعديل' ? 'selected' : '' }}>قيد المراجعة او التعديل</option>
                                         <option value="ملغي" {{ $order->status == 'ملغي' ? 'selected' : '' }}>ملغي</option>
 
                                     </select>
@@ -119,31 +118,33 @@
                             </div>
 
                             <p class="text-danger fw-600">مستقل/مستقلين الطلب:</p>
+                            @foreach (json_decode($order->freelancer_details, true) as $freelancerDetail)
 
                             <div class="container mt-3" id="freelancer-container">
-                                @foreach (json_decode($order->freelancer_details, true) as $freelancerDetail)
+
                                 <div class="row freelancer-row">
                                     <div class="col-md-6 mb-25">
                                         <div class="form-group select-px-15 tagSelect-rtl">
                                             <div class="dm-select">
                                                 <select class="select2 form-control" name="freelancers[]" data-placeholder="اختر مستقل...">
                                                     <option value="">اختر</option>
-
+                                                   
                                                     @foreach ($freelancers as $freelancer)
-                                                    <option value="{{ $freelancer->name }}" {{ $freelancerDetail['name'] == $freelancer->name ? 'selected' : '' }}>{{ $freelancer->name }}</option>
-                                                        <option value="{{ $freelancer->name }}" >{{ $freelancer->name }}</option>
+                                                        <option value="{{ $freelancer->name }}-{{$freelancer->id}}" {{ $freelancerDetail['name']  == $freelancer->name ? 'selected' : '' }}>{{ $freelancer->name }}</option>
+                                                        <!-- <option value="{{ $freelancer->name }}-{{$freelancer->id}}" {{ $freelancerDetail['name']  == $freelancer->name ? 'selected' : '' }}>{{ $freelancer->name }}</option> -->
 
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-6 mb-25">
                                         <input type="text" name="recieve[]" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="Amount in dollars" value="{{ $freelancerDetail['compensation'] }}">
                                     </div>
                                 </div>
-                                @endforeach
                             </div>
+                            @endforeach
 
 
 
@@ -170,7 +171,7 @@
                                             <select class="select2 form-control" name="freelancers[]" data-placeholder="اختر مستقل...">
                                                 <option value="">اختر</option>
                                                 @foreach ($freelancers as $freelancer)
-                                                <option value="{{ $freelancer->name }}">{{ $freelancer->name }}</option>
+                                                <option value="{{ $freelancer->name }}-{{$freelancer->id}}">{{ $freelancer->name }}</option>
                                                 @endforeach
                                             </select>
                                         `;

@@ -7,11 +7,11 @@
         <div class="row">
         <div class="col-lg-12">
             <div class="breadcrumb-main">
-                <h4 class="text-capitalize breadcrumb-title">{{ trans('menu.edit_educational') }}</h4>
+                <h4 class="text-capitalize breadcrumb-title">{{ trans('menu.add_management_team') }}</h4>
                 <div class="breadcrumb-action justify-content-center flex-wrap">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><i class="las la-home"></i>المكتبة التعليمية</a></li>
+                            <li class="breadcrumb-item"><a href="#"><i class="las la-home"></i>فريق الادارة </a></li>
                         </ol>
                     </nav>
                 </div>
@@ -29,21 +29,87 @@
                 <div class="card-body py-md-30">
 
                     @include('partials._errors')
-                    <form action="{{route('update.educational', [app()->getLocale() , $educational->id] )}}" method="POST">
+                    <form action="{{route('managementTeam.update', [app()->getLocale() , $ManagementTeams->id] )}}" method="POST">
                         @csrf
                         <div class="row">
 
-                            <div class="col-md-12 mb-25">
-                                        <textarea name="text" id="text" class="form-control">{!! $educational->text !!}</textarea>
+                        <div class="col-md-6 mb-25">
+                                <p style="color:#000;font-weight: bolder;">نسبة مدير المبيعات  :</p>
+
+                                    <input type="text" name="sales_manager" class="form-control ih-medium ip-gray radius-xs b-light px-15"   value="{{$ManagementTeams->sales_manager}}">
 
                             </div>
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">مرتب مدير المبيعات  :</p>
 
+                                    <input type="text" name="sales_manager_salary" class="form-control ih-medium ip-gray radius-xs b-light px-15"   value="{{$ManagementTeams->sales_manager_salary}}">
 
+                                </div>
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">نسبة مدير التسويق  :</p>
 
+                                    <input type="text" name="marketing_manager" class="form-control ih-medium ip-gray radius-xs b-light px-15"   value="{{$ManagementTeams->marketing_manager}}">
 
+                                </div>
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">مرتب مدير التسويق  :</p>
+
+                                    <input type="text" name="marketing_manager_salary" class="form-control ih-medium ip-gray radius-xs b-light px-15"   value="{{$ManagementTeams->marketing_manager_salary}}">
+
+                                </div>
+
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">نسبة المدير التقني :</p>
+
+                                    <input type="text" name="technical_director" class="form-control ih-medium ip-gray radius-xs b-light px-15"     value="{{$ManagementTeams->technical_director}}">
+
+                                </div>
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">مرتب المدير التقني :</p>
+
+                                    <input type="text" name="technical_director_salary" class="form-control ih-medium ip-gray radius-xs b-light px-15"     value="{{$ManagementTeams->technical_director_salary}}">
+
+                                </div>
+
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">نسبة المدير المالي :</p>
+
+                                    <input type="text" name="CFO" class="form-control ih-medium ip-gray radius-xs b-light px-15"    value="{{$ManagementTeams->CFO}}">
+
+                                </div>
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">مرتب المدير المالي :</p>
+
+                                    <input type="text" name="CFO_salary" class="form-control ih-medium ip-gray radius-xs b-light px-15"    value="{{$ManagementTeams->CFO_salary}}">
+
+                                </div>
+
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">مسبة المدير التنفيذي :</p>
+
+                                    <input type="text" name="CEO" class="form-control ih-medium ip-gray radius-xs b-light px-15"     value="{{$ManagementTeams->CEO}}">
+
+                                </div>
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">مرتب المدير التنفيذي :</p>
+
+                                    <input type="text" name="CEO_salary" class="form-control ih-medium ip-gray radius-xs b-light px-15"     value="{{$ManagementTeams->CEO_salary}}">
+
+                                </div>
+
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">نسبة مدير الموارد البشرية :</p>
+
+                                    <input type="text" name="hr_manager" class="form-control ih-medium ip-gray radius-xs b-light px-15"      value=" {{$ManagementTeams->hr_manager}}">
+                                </div>
+                                <div class="col-md-6 mb-25">
+                                    <p style="color:#000;font-weight: bolder;">مرتب مدير الموارد البشرية :</p>
+
+                                    <input type="text" name="hr_manager_salary" class="form-control ih-medium ip-gray radius-xs b-light px-15"      value=" {{$ManagementTeams->hr_manager_salary}}">
+                                </div>
                             <div class="col-md-6">
                                 <div class="layout-button mt-0">
-                                    <button type="submit" class="btn btn-primary btn-default btn-squared px-30">حفظ</button>
+                                    <button type="submit" class="btn btn-primary btn-default btn-squared px-30">تعديل</button>
                                 </div>
                             </div>
                         </div>

@@ -42,5 +42,9 @@ class Order extends Model
     {
         return $this->belongsTo(InventoryUpdates::class );
     }
+    public function freelancerOrder()
+    {
+        return $this->hasMany(FreelancerOrders::class);
+    }
 
 }

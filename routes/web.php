@@ -71,6 +71,9 @@ Route::group(['middleware'=>'auth'],function(){
             Route::get('/holiday/freelancer/{id}' , [FreelancerController::class , 'holiday'])->name('holiday');
             Route::get('/holiday/return/{id}' , [FreelancerController::class , 'return_holiday'])->name('return_holiday');
             Route::get('/freelance_status/{id}',[FreelancerController::class,'freelance_status'])->name('freelance_status');
+            
+            Route::get('/sort-freelancers', [FreelancerController::class, 'sortFreelancersByRating'])->name('sort_freelancers');
+
             // تقييم المستقلين
 
             Route::get('rate/freelancer' , [RatingController::class , 'add_rating'])->name('add_rating');
@@ -292,11 +295,20 @@ Route::get('order/update_status/{id}',[OrderController::class , 'update_status']
         Route::post('update/SalesTeam/{id}' , [SalesTeamController  ::class,'update'])->name('SalesTeam.update');
         Route::get('delete/SalesTeam/{id}' , [SalesTeamController   ::class,'destroy'])->name('SalesTeam.delete');
 
+        //inventories
         Route::get('/inventory-report', [FinalReportController::class, 'generateInventoryReport'])->name('inventory.report');
-Route::get('/inventory-update', [ReportController::class, 'inventoryUpdates'])->name('inventory.update');
-Route::get('/delete/inventory-update/{id}',[ReportController::class, 'deleteInventoryUpdate'])->name('delete.inventory.updates');
-Route::get('/inventory-all',[FinalReportController::class,'getAllInventories'])->name('inventory.all');
-Route::get('/inventory-show/{id}',[FinalReportController::class,'showInventor'])->name('inventory.show');
+        Route::get('/inventory-update', [ReportController::class, 'inventoryUpdates'])->name('inventory.update');
+        Route::get('/delete/inventory-update/{id}',[ReportController::class, 'deleteInventoryUpdate'])->name('delete.inventory.updates');
+        Route::get('/inventory-all',[FinalReportController::class,'getAllInventories'])->name('inventory.all');
+        Route::get('/inventory-show/{id}',[FinalReportController::class,'showInventor'])->name('inventory.show');
+        //inventories detailes
+        Route::get('freelances-Detailes/{id}',[FinalReportController::class ,'freelancesDetailsView'])->name('freelacers.details');
+        Route::get('Marketing-Detailes/{id}',[FinalReportController::class ,'marketingDetailsView'])->name('marketing.details');
+        Route::get('SalesAgent-Detailes/{id}',[FinalReportController::class ,'SalesAgentView'])->name('salesAgent.details');
+        Route::get('SalesOfficer-Detailes/{id}',[FinalReportController::class ,'SalesOffierView'])->name('salesOfficer.details');
+        Route::get('Setting-Detailes/{id}',[FinalReportController::class ,'settingDetailsView'])->name('setting.details');
+
+
 // المكتبة التعليمية
 
 Route::get('/create/educational' , [EducationalController::class , 'create'])->name('create.educational');

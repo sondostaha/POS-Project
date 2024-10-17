@@ -47,5 +47,8 @@ public static function getAllFreelancer(){
         return $this->belongsTo(NewFranchise::class, 'new_franchise_id');
     }
 
-
+    public function freelancerOrder()
+    {
+        return $this->hasMany(FreelancerOrders::class,'freelancer_id','id');
+    }
 }

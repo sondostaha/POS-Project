@@ -70,8 +70,8 @@
                                       <th class="wd-10p border-bottom-0 " >قيمة الطلب للوكيل</th>
                                       <th class="wd-10p border-bottom-0 " >وسيلة التحويل</th>
                                       <th class="wd-10p border-bottom-0 " >اثبات التحويل</th>
-                                      <th class="wd-10p border-bottom-0 " >المستقلين ومستحقاتهم</th>
-                                        <th class="wd-10p border-bottom-0 " >حاله الطلب</th>
+                                      <th class="wd-10p border-bottom-0 " >المستقلين ومستحقاتةم</th>
+                                        <th class="wd-10p border-bottom-0 " >حالة الطلب</th>
                                         <th class="wd-10p border-bottom-0 " > الجرد</th>
                                       <th class="wd-10p border-bottom-0 " >العمليات</th>
                                     </tr>
@@ -99,7 +99,7 @@
                                           @endphp
                                           @if($freelancers)
                                               @foreach($freelancers as $freelancer)
-                                                  <p>{{ $freelancer['name'] }}: {{ $freelancer['compensation'] }}</p>
+                                                  <p>{{preg_replace('/\d+$/', '',  str_replace(" -","",$freelancer['name'])) }}: {{ $freelancer['compensation'] }}</p>
                                               @endforeach
                                           @endif
                                       </td>
@@ -114,7 +114,7 @@
                                         <ul class="orderDatatable_actions mb-0 d-flex ">
                                             @if($order->status != 'مسلم')
                                                 <li>
-                                                    <a href="{{route('update_order_status' , [app()->getLocale() , $order->id])}}" title="تغيير حاله الطلب الي مسلم">
+                                                    <a href="{{route('update_order_status' , [app()->getLocale() , $order->id])}}" title="تغيير حالة الطلب الي مسلم">
                                                         <img src="{{ asset('assets/img/svg/status.jpg') }}" alt="test" class="jpg">
                                                     </a>
                                                 </li>
@@ -229,12 +229,12 @@ $("document").ready(function () {
 <script>
 function confirmDelete(url) {
     Swal.fire({
-        title: 'هل انت متأكد؟',
+        title: 'ةل انت متأكد؟',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'نعم ، احذفه',
+        confirmButtonText: 'نعم ، احذفة',
         cancelButtonText: 'لا',
 
     }).then((result) => {

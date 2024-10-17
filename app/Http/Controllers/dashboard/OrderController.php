@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\Freelancer;
+use App\Models\FreelancerOrders;
 use App\Models\InventoryUpdates;
 use App\Models\MainField;
 use App\Models\Order;
@@ -64,13 +65,23 @@ class OrderController extends Controller
         // Combine freelancers and their respective compensation into a single array
         $freelancerDetails = [];
         foreach ($data['freelancers'] as $index => $freelancer) {
+            $parts = str_split($freelancer, strpos($freelancer, '-'));
+            $edit_name =implode(' ', $parts);
+            // dd()
+            $namee = str_replace(" -","",$edit_name);
+            $name = preg_replace('/\d+$/', '', $namee);
+            $id = str_replace("-" ,"" ,$parts[1]);
             $freelancerDetails[] = [
-                'name' => $freelancer,
+                'name' => $name,
+                'id' => $id,
                 'compensation' => $data['recieve'][$index],
             ];
         }
+        // dd($freelancerDetails);
         $avalue = ($data['cvalue'] - $data['fvalue']) * 0.20 ;
-        Order::create([
+        
+        
+        $neworder =Order::create([
             'client_id' => $data['client_id'],
             'main_field_id' => $data['main_field_id'],
             'sub_field_id' => $data['sub_field_id'],
@@ -85,7 +96,18 @@ class OrderController extends Controller
             'freelancer_details' => json_encode($freelancerDetails),
             'new_franchise_id' => $data['new_franchise_id']
         ]);
-
+        if($neworder->status != 'مسلم')
+        {
+            foreach($freelancerDetails as $value)
+            {
+                FreelancerOrders::create([
+                    'freelancer_id' => $value['id'],
+                    'order_id' => $neworder->id,
+                    'recieve' => $value['compensation'],
+                ]);
+            }
+        }
+        
         $notification = [
             'message' => 'تمت الاضافة بنجاح',
             'alert-type' => 'success'
@@ -101,7 +123,8 @@ class OrderController extends Controller
         $description = "all orders";
         $currentUser = Auth::user();
         $orders = str_contains($currentUser->role,'المدير') || str_contains($currentUser->role,'مدير')? Order::where('new_franchise_id' , $currentUser->new_franchise_id)->with('inventoryUpdate')->get() :Order::where('new_franchise_id' , $currentUser->new_franchise_id)->where('user_id',$currentUser->id)->with('inventoryUpdate')->get();
-        return view('orders.all_orders' , compact("orders" , "title" , "description"));
+        $freelancerss = Freelancer::get();
+        return view('orders.all_orders' , compact("orders" , 'freelancerss',"title" , "description"));
     }
 
     public function edit($language , $id){
@@ -115,7 +138,16 @@ class OrderController extends Controller
         $sub_fields = SubField::where('new_franchise_id' , $currentUser->new_franchise_id)->get();
         $clients = Client::where('new_franchise_id' , $currentUser->new_franchise_id)->get();
         $freelancers = Freelancer::where('new_franchise_id' , $currentUser->new_franchise_id)->get();
-        $order = Order::findOrFail($id);
+        $order = Order::with('freelancerOrder')->findOrFail($id);
+        // // dd($order);
+        // foreach($freelancers as $free)
+        // {
+        //     foreach(json_decode($order->freelancer_details, true) as $freelancerDetail)
+        //     {
+        //         dd(preg_replace('/\d+$/', '',str_replace(" -","",str_split($freelancerDetail['name'], strpos($freelancerDetail['name'], '-')))) === "Yousef yehia");
+        //     }
+        // }
+       
         return view('orders.edit_order' , compact("clients" , "title" , "description" , "main_fields" , "sub_fields" ,"freelancers" , "order"));
 
     }
@@ -151,8 +183,17 @@ class OrderController extends Controller
 
         $freelancerDetails = [];
         foreach ($data['freelancers'] as $index => $freelancer) {
+            $parts = str_split($freelancer, strpos($freelancer, '-'));
+            $edit_name =implode(' ', $parts);
+            // dd()
+            $namee = str_replace(" -","",$edit_name);
+            
+            $name = preg_replace('/\d+$/', '', $namee);
+            dd($name);
+            $id = str_replace("-" ,"" ,$parts[1]);
             $freelancerDetails[] = [
-                'name' => $freelancer,
+                'name' => $name,
+                'id' => $id,
                 'compensation' => $data['recieve'][$index],
             ];
         }
@@ -176,6 +217,17 @@ class OrderController extends Controller
             'status' => $data['status'],
 
         ]);
+        if($order->status != 'مسلم')
+        {
+            foreach($freelancerDetails as $value)
+            {
+                FreelancerOrders::create([
+                    'freelancer_id' => $value['id'],
+                    'order_id' => $order->id,
+                    'recieve' => $value['compensation'],
+                ]);
+            }
+        }
 //dd();
         if ($order->status == 'ملغي')
         {
@@ -225,9 +277,14 @@ class OrderController extends Controller
 
         $order->update(['status' => 'مسلم']);
 //        dd($order);
-
+        $freelancers = FreelancerOrders::where('order_id',$order->id)->get();
+        // dd($freelancers);
+        foreach($freelancers as $free)
+        {
+            $free->delete();
+        }
         $notification = array(
-            'message' => 'تم تغيير حاله الطلب اي مسلم بنجاح',
+            'message' => 'تم تغيير حالة الطلب اي مسلم بنجاح',
             'alert-type' => 'success'
         );
 

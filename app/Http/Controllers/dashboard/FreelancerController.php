@@ -18,6 +18,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use CSV;
 use Illuminate\Support\Facades\Auth;
 use App\Imports\FreelancersImport;
+use App\Models\Order;
 
 // use Excel;
 class FreelancerController extends Controller
@@ -263,8 +264,10 @@ class FreelancerController extends Controller
         $title = "Freelancers";
         $description = "Freelancers";
         $userId = Auth::id();
+        $currentFranchiseId = auth()->user()->new_franchise_id;
 
-        $freelancers = Freelancer::where('user_id' , $userId)->get();
+        $orders =  Order::where('status', '!=', 'مسلم')->pluck('id');
+        $freelancers = Freelancer::with('freelancerOrder')->where('new_franchise_id' , $currentFranchiseId)->get();
 
         return view('freelancers.all',compact('title','description','freelancers'));
     }
@@ -305,12 +308,13 @@ class FreelancerController extends Controller
     }
 
     public function show($language , $id){
+
         $title = "Show Freelancers";
         $description = "Show Freelancers";
         $freelancer = Freelancer::where('id',$id)->with('ratings')->first();
         $total_ratting = $freelancer->ratings->sum('rating');
         $count_rating = $freelancer->ratings->count();
-        $total_value_of_rating = $total_ratting / $count_rating ;
+        $total_value_of_rating =$total_ratting != 0 || $count_rating != 0 ? $total_ratting / $count_rating : 0 ;
  //        dd($freelancer);
         return view('freelancers.show_freelancer' , compact("freelancer" , 'total_value_of_rating',"title" , "description" ));
     }
@@ -453,7 +457,6 @@ class FreelancerController extends Controller
             "email" => 'string|required|email',
             "cv" => 'string|required',
         ]);
-
         $userId = Auth::id();
 
             $currentUser = Auth::user();
@@ -594,7 +597,7 @@ public function freelance_status($language ,$id)
     $freelance = RequestFreelancer::findOrFail($id);
     if($freelance)
     {
-        $freelance->update(['freelancer_status' => 'يوجد']);
+        $freelance->update(['freelancer_status' => 'موجود']);
     }
     $notification = [
         'message' => 'تمت الاضافة بنجاح',
@@ -678,7 +681,6 @@ public function freelance_status($language ,$id)
             "desc" => 'required',
             "status" => 'required',
         ]);
-
                     $currentUser = Auth::user();
             if ($currentUser && $currentUser->new_franchise_id) {
                 $data['new_franchise_id'] = $currentUser->new_franchise_id;
@@ -717,6 +719,28 @@ public function freelance_status($language ,$id)
         return redirect()->route('get_request_freelancer' , app()->getLocale() )->with($notification);
 
     }
+
+
+
+public function sortFreelancersByRating()
+{
+    // جلب الـ new_franchise_id الخاص بالمستخدم الحالي
+    $currentFranchiseId = auth()->user()->new_franchise_id;
+
+    // جلب المستقلين مع التقييمات وترشيحةم بناءً على الـ new_franchise_id الخاص بالمستخدم الحالي
+$freelancers = Freelancer::with(['main_field', 'sub_field', 'ratings'])
+    ->leftJoin('ratings', 'freelancers.id', '=', 'ratings.freelancer_id')
+    ->select('freelancers.id', 'freelancers.name', 'freelancers.main_field_id', 'freelancers.sub_field_id', 'freelancers.products', 'freelancers.languages', DB::raw('COALESCE(AVG(ratings.rating), 0) as average_rating'))
+    ->where('freelancers.new_franchise_id', $currentFranchiseId)
+    ->groupBy('freelancers.id', 'freelancers.name', 'freelancers.main_field_id', 'freelancers.sub_field_id', 'freelancers.products', 'freelancers.languages') // إضافة الأعمدة التي لا يتم تجميعها ةنا
+    ->orderBy('average_rating', 'desc')
+    ->get();
+
+
+    // إعادة النتائج إلى الجافا سكريبت
+    return response()->json($freelancers);
+}
+
 
 
 

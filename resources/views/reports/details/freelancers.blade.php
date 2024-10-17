@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
 
-
 <!-- Add SweetAlert2 CSS and JS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
@@ -44,68 +43,61 @@
                 <div class="card-body">
                     <div class="userDatatable adv-table-table global-shadow border-0 bg-white w-100 adv-table">
                         <div class="table-responsive">
-                          <div class="adv-table-table__header">
-                            <h4>{{ trans('menu.marketing') }}</h4>
-                            <div class="adv-table-table__button">
-                                <a href="{{route('assign_client' , app()->getLocale())}}"  class="btn btn-primary fs-6 fw-bold text-center" >
-                            {{trans('menu.assign_client')}}
-                                </a>   
+                            <div class="adv-table-table__header">
+                                <h4>{{ trans('menu.orders') }}</h4>
+                                
                             </div>
-                        </div>
-                            
-                            <div class="table-responsive">
-                                <table class="table text-md-nowrap mt-2" id="example1">
-                                  <thead>
-                                    <tr>
-                                      <th class="wd-15p border-bottom-0 " >id</th>
-                                      <th class="wd-15p border-bottom-0 " >العميل الأساسي</th>
-                                      <th class="wd-15p border-bottom-0 " >العميل المضاف</th>
-
-                                      <th class="wd-10p border-bottom-0 " >العمليات</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    @foreach ( $assigns as $assign )
-                                    <tr>
-
-                                        <td>{{$assign->id}}</td>
-                                        @php
-                                        $previousName = App\Models\Client::where('id', $assign->previous_client_id)->pluck('name')->first();
-                                        @endphp
-                                        <td>{{$previousName}}</td>
-                                        @php
-                                        $existing = App\Models\Client::where('id', $assign->existing_client_id)->pluck('name')->first();
-                                        @endphp
-
-                                        <td>{{$existing}}</td>
+                            <div id="filter-form-container"></div>
+                            <table class="table mb-0 table-borderless adv-table" data-sorting="true" data-filter-container="#filter-form-container" data-paging-current="1" data-paging-position="right" data-paging-size="10">
+                                <thead>
+                                    <tr class="userDatatable-header">
+                                        <th>
+                                            <span class="userDatatable-title">رقم الطلب</span>
+                                        </th>
+                                        <th>
+                                            <span class="userDatatable-title"> المستقل</span>
+                                        </th>
+                                        <th>
+                                            <span class="userDatatable-title"> مستحقات المستقل</span>
+                                        </th>
                                         
-                                    <td>
-                                        <ul class="orderDatatable_actions mb-0 d-flex ">
-                                            <li>
-                                                <a href="{{route('tree' , [app()->getLocale(),$assign->id])}}" class="view">
-                                                    <i class="uil uil-eye"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="{{route('edit_assign_client' , [app()->getLocale(),$assign->id])}}" class="edit">
-                                                    <i class="uil uil-edit"></i></a>
-                                            </li>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($orders as $order )
 
-                                            
-                                            
-<li>
-    <a href="javascript:void(0);" class="remove" onclick="confirmDelete('{{route('delete_assign_client' , [app()->getLocale(),$assign->id])}}')">
-        <img src="{{ asset('assets/img/svg/trash-2.svg') }}" alt="trash-2" class="svg">
-    </a>
-</li>
-                                        </ul>
-                                    </td>
+                                  @foreach (json_decode($order->freelancer_details, true) as $freelancerDetail)
 
+                                    <tr>
+                                        <td>
+                                            <div class="userDatatable-content">{{$order->id}}</div>
+                                        </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="userDatatable-inline-title">
+                                                        <a href="{{route('show_freelancer',[app()->getLocale(),$freelancerDetail['id']])}}" class="text-dark fw-500">
+                                                        
+                                                            <h6>{{$freelancerDetail['name']}}</h6>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="userDatatable-content">
+                                                    {{$freelancerDetail['compensation']}}
+                                                </div>
+                                            </td>
+                                       
                                     </tr>
                                     @endforeach
-                              
-                                  </tbody>
-                                </table>
-                              </div>
+
+                                    @endforeach
+
+
+
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
                 </div>
@@ -117,7 +109,7 @@
 
 
 
-
+{{--
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -144,20 +136,39 @@
 
 
 
-            
+
         </div>
 
       </div>
     </div>
-</div>
+</div> --}}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> --}}
 
 <script>
+//   @if(Session::has('message'))
+//   var type = "{{Session::get('alert-type' , 'info')}}"
+//   switch (type) {
+//     case 'info':
+//     toastr.info( "{{Session::get('message')}}" );
+//     break;
 
+//     case 'success':
+//     toastr.success( "{{Session::get('message')}}" );
+//     break;
+
+//     case 'warning':
+//     toastr.warning( "{{Session::get('message')}}" );
+//     break;
+
+//     case 'error':
+//     toastr.error( "{{Session::get('message')}}" );
+//     break;
+
+//   }
+
+//   @endif
 
 $("document").ready(function () {
   var $file = $("#file-input"),
@@ -188,8 +199,9 @@ $("document").ready(function () {
   });
 });
 
-
 </script>
+
+
 
 
 <script>
@@ -210,10 +222,5 @@ function confirmDelete(url) {
     })
 }
 </script>
-
-
-
-
-
 
 @endsection
